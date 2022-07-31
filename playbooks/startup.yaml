@@ -13,11 +13,12 @@
   - name: Get MAC Addresses
     set_fact:
       mac_addresses: "{{ mac_addresses | default([]) + [hostvars[item].mac] }}"
-    with_items: "{{ groups['servers'] }}"
+    loop: "{{ groups['servers'] }}"
 
   - name: Startup
     shell:
       cmd: "wakeonlan {{ item }}"
-    with_items: mac_addresses
+    loop: "{{ mac_addresses }}"
+    register: test
 
     
