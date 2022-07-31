@@ -1,6 +1,6 @@
 --- 
 - name: Startup
-  hosts: raspis
+  hosts: rasps
   become: true
 
   tasks:
