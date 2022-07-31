@@ -1,6 +1,6 @@
 ---
 - name: Initial Configuration
-  hosts: servers
+  hosts: servers,raspis
   become: true
 
   tasks:
