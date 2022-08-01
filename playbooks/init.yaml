@@ -1,8 +1,7 @@
 ---
-- name: Initial Configuration
+- name: Initialize system
   hosts: servers,rasps
   become: true
-
   tasks:
   - name: Ensure group "wheel" exists
     group:
@@ -28,49 +27,3 @@
   - name: Set hostname
     hostname:
       name: "{{ inventory_hostname }}"
-
-  - name: Maintain packages
-    apt:
-      force_apt_get: yes
-      upgrade: dist
-      update_cache: true
-      cache_valid_time: 3600
-      autoremove: true
-      autoclean: true
-
-  - name: Check for firmware upgrade
-    shell:
-      cmd: fwupdmgr get-updates -y
-    register: firmware_updates_output
-    changed_when: false
-    failed_when: false
-
-  - name: Check output of firmware upgrade
-    set_fact:
-      firmware_upgrade_needed: "{{ firmware_updates_output.rc == 0 }}"
-
-  - name: Run firmware update
-    shell:
-      cmd: fwupdmgr update -y --no-reboot-check
-    when: firmware_upgrade_needed
-
-  - name: Wait if firmware update was needed
-    wait_for_connection:
-      delay: 60
-      timeout: 300
-    when: firmware_upgrade_needed
-
-  - name: Check if a reboot is needed
-    stat: 
-      path: /var/run/reboot-required
-      get_md5: false
-    register: reboot_required_file
-
-  - name: Reboot the server
-    reboot:
-      connect_timeout: 5
-      reboot_timeout: 300
-      pre_reboot_delay: 0
-      post_reboot_delay: 30
-      test_command: uptime
-    when: reboot_required_file.stat.exists
