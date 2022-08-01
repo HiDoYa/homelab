@@ -1,0 +1,32 @@
+--- 
+- name: Startup servers
+  hosts: rasps
+  become: true
+  tasks:
+  - name: Get wakeonlan binary
+    uri:
+      url: https://raw.githubusercontent.com/jpoliv/wakeonlan/master/wakeonlan
+      dest: /usr/local/bin/wakeonlan
+      mode: "755"
+
+  - name: Get MAC Addresses
+    set_fact:
+      mac_addresses: "{{ mac_addresses | default([]) + [hostvars[item].mac] }}"
+    loop: "{{ groups['servers'] }}"
+
+  - name: Send wakeonlan broadcasts to the subnet
+    shell:
+      cmd: "wakeonlan {{ item }}"
+    loop: "{{ mac_addresses }}"
+    register: test
+
+- name: Wait for startup
+  hosts: servers
+  become: true
+  tasks:
+  - name: Wait for startup
+    wait_for_connect: 
+      connect_timeout: 5
+      delay: 15
+      sleep: 5
+      timeout: 300

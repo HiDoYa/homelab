@@ -1,0 +1,8 @@
+--- 
+- name: Shutdown servers
+  hosts: servers
+  become: true
+  tasks:
+  - name: Shutdown servers
+    community.general.shutdown:
+      msg: "Ansible triggered shutdown"
