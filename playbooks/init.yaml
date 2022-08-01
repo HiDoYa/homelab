@@ -1,6 +1,6 @@
 ---
 - name: Initialize system
-  hosts: servers,rasps
+  hosts: all
   become: true
   tasks:
   - name: Ensure group "wheel" exists

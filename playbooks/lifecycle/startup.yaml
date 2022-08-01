@@ -19,14 +19,3 @@
       cmd: "wakeonlan {{ item }}"
     loop: "{{ mac_addresses }}"
     register: test
-
-- name: Wait for startup
-  hosts: servers
-  become: true
-  tasks:
-  - name: Wait for startup
-    wait_for_connect: 
-      connect_timeout: 5
-      delay: 15
-      sleep: 5
-      timeout: 300

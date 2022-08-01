@@ -1,14 +1,17 @@
 ---
-- name: Install software
-  hosts: servers
+- name: Install software for all servers
+  hosts: all
   become: true
-
   tasks:
   - name: Install docker
     include_role:
       name: docker
     tags: ['docker']
 
+- name: Install software for dell servers
+  hosts: servers
+  become: true
+  tasks:
   - name: Install consul
     include_role:
       name: consul
