@@ -1,0 +1,42 @@
+---
+- name: Add Docker GPG apt Key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: Add Docker Repository
+  apt_repository:
+    repo: deb https://download.docker.com/linux/ubuntu focal stable
+    state: present
+
+- name: Update apt and install docker-ce
+  apt:
+    name: docker-ce
+    state: latest
+    update_cache: true
+
+- name: Copy daemon.json to remote server
+  copy:
+    src: files/daemon.json
+    dest: /tmp/daemon.json
+
+- name: Check if daemon.json is different on server
+  shell:
+    cmd: diff /tmp/daemon.json /etc/docker/daemon.json
+  register: file_diff
+  changed_when: false
+  failed_when: false
+
+- name: Copy new daemon.json to docker config
+  copy:
+    src: /tmp/daemon.json
+    dest: /etc/docker/daemon.json
+    remote_src: true
+  when: file_diff.rc != 0
+
+- name: Ensure daemon changes take effect
+  systemd:
+    state: restarted
+    name: docker
+    daemon_reload: yes
+  when: file_diff.rc != 0

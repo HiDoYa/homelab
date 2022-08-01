@@ -1,0 +1,15 @@
+---
+- name: Install software
+  hosts: servers
+  become: true
+
+  tasks:
+  - name: Install docker
+    include_role:
+      name: docker
+    tags: ['docker']
+
+  - name: Install consul
+    include_role:
+      name: consul
+    tags: ['consul']
