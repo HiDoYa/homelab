@@ -3,11 +3,20 @@
   hosts: rasps
   become: true
   tasks:
+  - name: See if wakeonlan binary exists
+    shell:
+      cmd: /usr/local/bin/wakeonlan
+      dest: /usr/local/bin/wakeonlan
+      mode: "755"
+    register: result
+    failed_when: false
+
   - name: Get wakeonlan binary
     uri:
       url: https://raw.githubusercontent.com/jpoliv/wakeonlan/master/wakeonlan
       dest: /usr/local/bin/wakeonlan
       mode: "755"
+    when: result.rc != 0
 
   - name: Get MAC Addresses
     set_fact:
