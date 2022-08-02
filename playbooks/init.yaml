@@ -1,7 +1,9 @@
 ---
-- name: Initialize system
+- name: Initialize systems
   hosts: all
   become: true
+  roles:
+  - ssh
   tasks:
   - name: Ensure group "wheel" exists
     group:
