@@ -6,8 +6,6 @@
   - name: See if wakeonlan binary exists
     shell:
       cmd: /usr/local/bin/wakeonlan
-      dest: /usr/local/bin/wakeonlan
-      mode: "755"
     register: result
     failed_when: false
 
