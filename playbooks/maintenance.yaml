@@ -5,7 +5,7 @@
   tasks:
   - name: Maintain packages
     apt:
-      force_apt_get: yes
+      force_apt_get: true
       upgrade: dist
       update_cache: true
       cache_valid_time: 3600

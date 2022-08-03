@@ -22,9 +22,9 @@
     user:
       name: ubuntu
       groups: wheel
-      append: yes
+      append: true
       state: present
-      createhome: yes
+      createhome: true
 
   - name: Set hostname
     hostname:
