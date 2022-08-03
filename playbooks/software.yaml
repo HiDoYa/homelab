@@ -6,6 +6,8 @@
   - name: Install docker
     include_role:
       name: docker
+      apply:
+        tags: ['docker']
     tags: ['docker']
 
 - name: Install software for dell servers
@@ -15,4 +17,6 @@
   - name: Install consul
     include_role:
       name: consul
+      apply:
+        tags: ['consul']
     tags: ['consul']

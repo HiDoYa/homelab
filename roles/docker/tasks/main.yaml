@@ -6,7 +6,7 @@
 
 - name: Add Docker Repository
   apt_repository:
-    repo: deb https://download.docker.com/linux/ubuntu focal stable
+    repo: "deb https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
     state: present
 
 - name: Update apt and install docker-ce
@@ -43,3 +43,10 @@
     name: docker
     daemon_reload: yes
   when: file_diff.rc != 0
+
+- name: Add user to docker group
+  user:
+    name: ubuntu
+    groups: docker
+    append: yes
+    state: present
