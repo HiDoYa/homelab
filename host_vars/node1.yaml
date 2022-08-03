@@ -1,0 +1,5 @@
+mac: "48:4d:7e:d3:0e:05"
+
+chef_master: true
+consul_leader: true
+k8_master: true
