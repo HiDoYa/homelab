@@ -1,4 +1,6 @@
 ---
+- include_tasks: ../tasks/get_home.yaml
+
 - name: Install chef server
   apt:
     deb: "{{ chef_server_download_url }}"
@@ -30,7 +32,7 @@
       cmd: "chef-server-ctl user-create {{ chef_admin.username }} \
         {{ chef_admin.first }} {{ chef_admin.last }} \
         {{chef_admin.email }} {{ chef_admin.password }} \
-        --filname \"/home/ubuntu/{{ chef_admin_fname }}\""
+        --filname \"{{ home_path }}/{{ chef_admin_fname }}\""
   - name: Add admin privileges
     shell:
       cmd: "chef-server-ctl grant-server-admin-permissions {{ chef_admin.username }}"
@@ -49,11 +51,11 @@
   shell:
     cmd: "chef-server-ctl org-create {{ chef_org }} {{ chef_org | capfirst }} \
       --association_user {{ chef_admin.username }} \
-      --filename \"/home/ubuntu/{{ chef_org_fname }}\""
+      --filename \"{{ home_path }}/{{ chef_org_fname }}\""
   when: not org_exists
 
 - name: Copy validator.pem
   fetch:
     flat: true
-    src: "/home/ubuntu/{{ chef_org_fname }}"
+    src: "{{ home_path }}/{{ chef_org_fname }}"
     dest: /tmp/chef-validation.pem

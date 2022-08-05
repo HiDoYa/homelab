@@ -1,0 +1,4 @@
+---
+- name: Get home path
+  set_fact:
+    home_path: "{{ lookup('env', 'HOME') }}"
