@@ -1,0 +1,14 @@
+---
+- name: Get chef server IP
+  set_fact:
+    chef_server_ip: "{{ ip if hostvars[item]['chef_server'] is defined and hostvars[item]['chef_server'] else chef_server_ip }}"
+  loop: "{{ groups['servers'] }}"
+  run_once: true
+  delegate_to: localhost
+
+- name: Chef server setup
+  include_tasks: server.yaml
+  when: chef_server is defined and chef_server
+
+- name: Chef client setup
+  include_tasks: client.yaml

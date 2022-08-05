@@ -1,0 +1,17 @@
+---
+- name: Install chef client
+  apt:
+    deb: "{{ chef_client_download_url }}"
+    state: present
+    update_cache: true
+
+- name: Create client.rb
+  template:
+    src: files/client.rb.j2
+    dest: /etc/chef/client.rb
+    
+- name: Copy validator.pem
+  copy:
+    src: /tmp/chef-validation.pem
+    dest: /etc/chef/validation.pem
+    mode: "0600"

@@ -1,6 +1,6 @@
 ip: "192.168.2.4"
 mac: "48:4d:7e:d3:0e:05"
 
-chef_master: true
+chef_server: true
 consul_leader: true
 k8_master: true

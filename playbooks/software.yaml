@@ -20,3 +20,10 @@
       apply:
         tags: ['consul']
     tags: ['consul']
+
+  - name: Install chef
+    include_role:
+      name: chef
+      apply:
+        tags: ['chef']
+    tags: ['chef']
