@@ -6,7 +6,7 @@
   run_once: true
   delegate_to: localhost
 
-- name: Run consul leader
+- name: Run consul leader (must be run first)
   docker_container: 
     name: consul-node
     image: consul
@@ -17,11 +17,11 @@
       -node={{ inventory_hostname }} \
       -bootstrap-expect={{ groups['servers'] | length }} \
       -client=0.0.0.0 \
-      -datacenter=homelab \
+      -datacenter={{ consul_datacenter_name }} \
       -bind={{ ip }}"
   when: consul_leader is defined and consul_leader
 
-- name: Run consul clients
+- name: Run consul servers
   docker_container: 
     name: consul-node
     image: consul
@@ -32,7 +32,7 @@
       -node={{ inventory_hostname }} \
       -bootstrap-expect={{ groups['servers'] | length }} \
       -client=0.0.0.0 \
-      -datacenter=homelab \
+      -datacenter={{ consul_datacenter_name}} \
       -join={{ consul_leader_ip }} \
       -bind={{ ip }}"
   when: consul_leader is not defined or not consul_leader
