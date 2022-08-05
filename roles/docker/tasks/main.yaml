@@ -41,12 +41,23 @@
   systemd:
     state: restarted
     name: docker
-    daemon_reload: yes
+    daemon_reload: true
   when: file_diff.rc != 0
 
 - name: Add user to docker group
   user:
     name: ubuntu
     groups: docker
-    append: yes
+    append: true
+    state: present
+
+- name: Add python3 pip
+  apt:
+    name: python3-pip
+    state: present
+    update_cache: true
+
+- name: Add python docker module
+  pip:
+    name: docker
     state: present
