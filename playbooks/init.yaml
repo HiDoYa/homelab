@@ -1,6 +1,6 @@
 ---
 - name: Initialize systems
-  hosts: all
+  hosts: servers,rasps
   become: true
   roles:
   - ssh

@@ -1,6 +1,6 @@
 ---
 - name: Maintenance
-  hosts: all
+  hosts: servers,rasps
   become: true
   tasks:
   - name: Maintain packages

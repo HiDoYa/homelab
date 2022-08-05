@@ -1,6 +1,6 @@
 ---
-- name: Install software for all servers
-  hosts: all
+- name: Install software for servers
+  hosts: servers,rasps
   become: true
   tasks:
   - name: Install docker
