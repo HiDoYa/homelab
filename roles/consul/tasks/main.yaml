@@ -8,21 +8,32 @@
 
 - name: Run consul leader
   docker_container: 
-    name: consul-leader
+    name: consul-node
     image: consul
     detach: true
     network_mode: host
-    command: "agent -server -ui -node={{ inventory_hostname }} -bootstrap-expect={{ groups['servers'] | length }} -client=0.0.0.0 -bind={{ ip }}"
-    recreate: true
+    command: 
+      "agent -server -ui \
+      -node={{ inventory_hostname }} \
+      -bootstrap-expect={{ groups['servers'] | length }} \
+      -client=0.0.0.0 \
+      -datacenter=homelab \
+      -bind={{ ip }}"
   when: consul_leader is defined and consul_leader
 
 - name: Run consul clients
   docker_container: 
-    name: consul-client
+    name: consul-node
     image: consul
     detach: true
     network_mode: host
-    command: "agent -server -node={{ inventory_hostname }} -bootstrap-expect={{ groups['servers'] | length }} -client=0.0.0.0 -join={{ consul_leader_ip }} -bind={{ ip }}"
-    recreate: true
+    command: 
+      "agent -server \
+      -node={{ inventory_hostname }} \
+      -bootstrap-expect={{ groups['servers'] | length }} \
+      -client=0.0.0.0 \
+      -datacenter=homelab \
+      -join={{ consul_leader_ip }} \
+      -bind={{ ip }}"
   when: consul_leader is not defined or not consul_leader
 
