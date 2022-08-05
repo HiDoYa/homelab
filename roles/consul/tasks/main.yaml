@@ -1,0 +1,28 @@
+---
+- name: Get leader IP
+  set_fact:
+    consul_leader_ip: "{{ ip if hostvars[item]['consul_leader'] is defined and hostvars[item]['consul_leader'] else consul_leader_ip }}"
+  loop: "{{ groups['servers'] }}"
+  run_once: true
+  delegate_to: localhost
+
+- name: Run consul leader
+  docker_container: 
+    name: consul-leader
+    image: consul
+    detach: true
+    network_mode: host
+    command: "agent -server -ui -node={{ inventory_hostname }} -bootstrap-expect={{ groups['servers'] | length }} -client=0.0.0.0 -bind={{ ip }}"
+    recreate: true
+  when: consul_leader is defined and consul_leader
+
+- name: Run consul clients
+  docker_container: 
+    name: consul-client
+    image: consul
+    detach: true
+    network_mode: host
+    command: "agent -server -node={{ inventory_hostname }} -bootstrap-expect={{ groups['servers'] | length }} -client=0.0.0.0 -join={{ consul_leader_ip }} -bind={{ ip }}"
+    recreate: true
+  when: consul_leader is not defined or not consul_leader
+
