@@ -12,6 +12,7 @@
     image: consul
     detach: true
     network_mode: host
+    restart_policy: always
     command: 
       "agent -server -ui \
       -node={{ inventory_hostname }} \
@@ -27,6 +28,7 @@
     image: consul
     detach: true
     network_mode: host
+    restart_policy: always
     command: 
       "agent -server \
       -node={{ inventory_hostname }} \
@@ -36,4 +38,3 @@
       -join={{ consul_leader_ip }} \
       -bind={{ ip }}"
   when: consul_leader is not defined or not consul_leader
-
