@@ -1,0 +1,4 @@
+node_name "{{ chef_admin.username }}"
+chef_server_url "https://{{ chef_server_ip }}/organizations/{{ chef_org }}"
+client_key "{{ chef_workstation_dir }}/chef-user-admin.pem"
+ssl_verify_mode :verify_none

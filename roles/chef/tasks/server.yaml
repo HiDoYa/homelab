@@ -20,6 +20,7 @@
   shell:
     cmd: chef-server-ctl user-list
   register: user_list
+  changed_when: false
 
 - name: Store if admin exists
   set_fact:
@@ -42,6 +43,7 @@
   shell:
     cmd: chef-server-ctl org-list
   register: org_list
+  changed_when: false
 
 - name: Store if org exists
   set_fact:

@@ -12,3 +12,6 @@
 
 - name: Chef client setup
   include_tasks: client.yaml
+
+- name: Chef workstation setup
+  include_tasks: workstation.yaml

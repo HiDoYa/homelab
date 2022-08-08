@@ -15,3 +15,5 @@ chef_admin:
   email: hiroyagojo@gmail.com
   password: NONE
 chef_admin_fname: "chef-user-{{ chef_admin.username }}.pem"
+
+chef_workstation_path: "/Users/hiroya.gojo/.chef-personal"
