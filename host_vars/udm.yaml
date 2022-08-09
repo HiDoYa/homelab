@@ -1,1 +1,2 @@
 ansible_user: root
+dns_address: "udm.hiroyagojo.com"
