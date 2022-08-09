@@ -1,5 +1,7 @@
 # sqlite3 gravity.db
 
+pihole_webpass: NONE
+
 # Table: adlist, adlist_by_group
 pihole_block_lists:
   - "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts",
@@ -10,4 +12,4 @@ pihole_block_lists:
 pihole_whitelist:
   - "thetradedesk.com"
   - "adsrvr.org"
-  - "puff.com"
+  - "hiroyagojo.com"

@@ -1,1 +1,14 @@
 ---
+- name: Copy docker compose
+  copy:
+    src: files/docker-compose.yml
+    dest: /opt/pihole/docker-compose.yml
+
+# TODO This should loop over all hosts with ip variable and dns_address variable
+# - name: Create DNS file
+#   loop: group_vars['all']
+
+- name: Run docker compose
+  docker_compose: 
+    project_src: /opt/pihole/docker-compose.yml
+
