@@ -1,6 +1,4 @@
 ---
-- include_tasks: ../tasks/get_home.yaml
-
 - name: Install chef server
   apt:
     deb: "{{ chef_server_download_url }}"
@@ -55,9 +53,3 @@
       --association_user {{ chef_admin.username }} \
       --filename \"{{ home_path }}/{{ chef_org_fname }}\""
   when: not org_exists
-
-- name: Copy validator.pem
-  fetch:
-    flat: true
-    src: "{{ home_path }}/{{ chef_org_fname }}"
-    dest: /tmp/chef-validation.pem

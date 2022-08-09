@@ -10,8 +10,8 @@
   include_tasks: server.yaml
   when: chef_server is defined and chef_server
 
-- name: Chef client setup
-  include_tasks: client.yaml
-
 - name: Chef workstation setup
   include_tasks: workstation.yaml
+
+- name: Chef client setup
+  include_tasks: client.yaml

@@ -2,17 +2,26 @@
 # We assume chef workstation is already installed locally
 # i.e. local installations are not the purpose of this ansible repo
 
+- name: Create directory structure
+  file:
+    path: "{{ chef_workstation_path }}"
+    state: directory
+  become: false
+  run_once: true
+  delegate_to: localhost
+
 - name: Create config.rb
   template:
     src: files/config.rb.j2
     dest: "{{ chef_workstation_path }}/config.rb"
+  become: false
   run_once: true
   delegate_to: localhost
 
-- name: Copy admin pem
+- name: Copy admin pem from server
   fetch:
     flat: true
-    src: /tmp/chef-user-admin.pem
-    dest: "{{ chef_workstation_path }}//chef-user-admin.pem"
+    src: /home/ubuntu/chef-user-admin.pem
+    dest: "{{ chef_workstation_path }}/chef-user-admin.pem"
     mode: "0600"
   when: chef_server is defined and chef_server

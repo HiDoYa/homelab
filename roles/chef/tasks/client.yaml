@@ -5,6 +5,13 @@
     state: present
     update_cache: true
 
+- name: Copy validator.pem from server
+  fetch:
+    flat: true
+    src: "/home/ubuntu/{{ chef_org_fname }}"
+    dest: /tmp/chef-validation.pem
+  when: chef_server is defined and chef_server
+
 - name: Create client.rb
   template:
     src: files/client.rb.j2
