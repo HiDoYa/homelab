@@ -10,6 +10,17 @@
         tags: ['docker']
     tags: ['docker']
 
+- name: Install software for raspberry pi server
+  hosts: rasps
+  become: true
+  tasks:
+  - name: Install pihole
+    include_role:
+      name: pihole
+      apply:
+        tags: ['pihole']
+    tags: ['pihole']
+
 - name: Install software for dell servers
   hosts: servers
   become: true

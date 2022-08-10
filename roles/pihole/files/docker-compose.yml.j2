@@ -13,7 +13,7 @@ services:
     environment:
       TZ: 'America/Chicago'
       WEBPASSWORD: '{{ pihole_webpass }}'
-      VIRTUAL_HOST: 'rp.hiroyagojo.com'
+      VIRTUAL_HOST: '{{ dns_address }}'
     volumes:
       - './etc-pihole/:/etc/pihole/'
       - './etc-dnsmasq.d/:/etc/dnsmasq.d/'

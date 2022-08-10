@@ -4,8 +4,8 @@ pihole_webpass: NONE
 
 # Table: adlist, adlist_by_group
 pihole_block_lists:
-  - "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts",
-  - "https://dbl.oisd.nl/",
+  - "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"
+  - "https://dbl.oisd.nl/"
   - "https://v.firebog.net/hosts/AdguardDNS.txt"
 
 # Table: client, client_by_group

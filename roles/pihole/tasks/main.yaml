@@ -1,14 +1,20 @@
 ---
 - name: Copy docker compose
-  copy:
-    src: files/docker-compose.yml
+  template:
+    src: files/docker-compose.yml.j2
     dest: /opt/pihole/docker-compose.yml
-
-# TODO This should loop over all hosts with ip variable and dns_address variable
-# - name: Create DNS file
-#   loop: group_vars['all']
 
 - name: Run docker compose
   docker_compose: 
     project_src: /opt/pihole/docker-compose.yml
+
+- name: Create DNS file
+  template:
+    src: files/custom.list.j2
+    dest: /opt/pihole/etc-pihole/custom.list
+
+- name: Ensure sqlite3 is installed
+  apt:
+    name: sqlite3
+    update_cache: true
 
