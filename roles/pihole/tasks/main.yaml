@@ -6,7 +6,7 @@
 
 - name: Run docker compose
   docker_compose: 
-    project_src: /opt/pihole/docker-compose.yml
+    project_src: /opt/pihole
 
 - name: Create DNS file
   template:
