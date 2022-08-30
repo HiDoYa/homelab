@@ -1,0 +1,21 @@
+---
+- name: Run mango
+  docker_container: 
+    name: mango
+    image: hkalexling/mango
+    detach: true
+    restart_policy: always
+    ports:
+      - "9000:9000"
+    volumes:
+      - /opt/mango/data:/root/mango
+      - /opt/mango/config:/root/.config/mango
+  when: mango is defined and mango
+
+- name: Get data content
+  ansible.posix.mount:
+    path: /opt/mango/data/library
+    src: store.hiroyagojo.com:/volume1/Electro/Pictures/Manga
+    state: mounted
+    fstype: nfs
+  when: mango is defined and mango

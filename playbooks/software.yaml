@@ -38,3 +38,10 @@
       apply:
         tags: ['chef']
     tags: ['chef']
+    
+  - name: Install mango
+    include_role:
+      name: mango
+      apply:
+        tags: ['mango']
+    tags: ['mango']
