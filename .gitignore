@@ -1,3 +1,4 @@
 test.yaml
 *.bkp
 *.dtmp
+.DS_Store
