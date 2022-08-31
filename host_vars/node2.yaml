@@ -2,4 +2,5 @@ ip: "192.168.2.5"
 mac: "48:4d:7e:d3:0b:90"
 dns_address: "node2.hiroyagojo.com"
 
+traefik: true
 mango: true

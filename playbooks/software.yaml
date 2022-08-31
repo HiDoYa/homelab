@@ -38,7 +38,14 @@
       apply:
         tags: ['chef']
     tags: ['chef']
-    
+
+  - name: Install traefik
+    include_role:
+      name: traefik
+      apply:
+        tags: ['traefik']
+    tags: ['traefik']
+
   - name: Install mango
     include_role:
       name: mango
