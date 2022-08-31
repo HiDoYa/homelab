@@ -34,6 +34,11 @@ http:
       service: pihole-service
       middlewares:
         - auth
+    store-router:
+      rule: Host(`store.svc.hiroyagojo.com`)
+      service: store-service
+      middlewares:
+        - auth
     traefik-admin-router:
       rule: Host(`traefik-admin.svc.hiroyagojo.com`)
       service: traefik-admin-service
@@ -59,6 +64,10 @@ http:
       loadBalancer:
         servers:
         - url: "http://rasp1.hiroyagojo.com"
+    store-service:
+      loadBalancer:
+        servers:
+        - url: "http://store.hiroyagojo.com:5000"
     traefik-admin-service:
       loadBalancer:
         servers:
