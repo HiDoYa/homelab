@@ -12,6 +12,9 @@
       - /opt/mango/config:/root/.config/mango
   when: mango is defined and mango
 
+- name: Include nfs utils
+  include_tasks: ../../../tasks/nfs.yaml
+
 - name: Get data content
   ansible.posix.mount:
     path: /opt/mango/data/library
