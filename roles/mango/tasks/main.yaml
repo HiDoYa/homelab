@@ -14,6 +14,7 @@
 
 - name: Include nfs utils
   include_tasks: ../../../tasks/nfs.yaml
+  when: mango is defined and mango
 
 - name: Get data content
   ansible.posix.mount:
