@@ -5,7 +5,7 @@
     state: directory
   when: traefik is defined and traefik
 
-- name: Copy configuration
+- name: Template configuration
   template:
     src: files/traefik.yaml
     dest: /opt/traefik/traefik.yaml
