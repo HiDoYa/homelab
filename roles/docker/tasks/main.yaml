@@ -61,3 +61,9 @@
   pip:
     name: docker
     state: present
+
+- name: Add docker compose
+  apt:
+    name: docker-compose
+    state: present
+    update_cache: true
