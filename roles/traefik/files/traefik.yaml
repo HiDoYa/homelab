@@ -39,6 +39,11 @@ http:
       service: store-service
       middlewares:
         - auth
+    filerun-router:
+      rule: Host(`filerun.svc.hiroyagojo.com`)
+      service: filerun-service
+      middlewares:
+        - auth
     traefik-admin-router:
       rule: Host(`traefik-admin.svc.hiroyagojo.com`)
       service: traefik-admin-service
@@ -68,6 +73,10 @@ http:
       loadBalancer:
         servers:
         - url: "http://store.hiroyagojo.com:5000"
+    filerun-service:
+      loadBalancer:
+        servers:
+        - url: "http://node3.hiroyagojo.com:8081"
     traefik-admin-service:
       loadBalancer:
         servers:

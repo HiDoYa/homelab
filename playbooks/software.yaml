@@ -52,3 +52,10 @@
       apply:
         tags: ['mango']
     tags: ['mango']
+
+  - name: Install filerun
+    include_role:
+      name: filerun
+      apply:
+        tags: ['filerun']
+    tags: ['filerun']

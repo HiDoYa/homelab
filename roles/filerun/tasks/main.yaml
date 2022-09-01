@@ -1,0 +1,52 @@
+---
+- name: Make directory if DNE
+  file:
+    path: /opt/filerun
+    state: directory
+  when: filerun is defined and filerun
+
+- name: Template configuration
+  template:
+    src: files/docker-compose.yaml
+    dest: /opt/filerun/docker-compose.yaml
+  when: filerun is defined and filerun
+
+- name: Create required directories
+  file:
+    path: /opt/filerun/user-files
+    state: directory
+  when: filerun is defined and filerun
+
+- name: Include nfs utils
+  include_tasks: ../../../tasks/nfs.yaml
+  when: filerun is defined and filerun
+
+- name: Get data content - Pictures
+  ansible.posix.mount:
+    path: /opt/filerun/user-files/Pictures
+    src: store.hiroyagojo.com:/volume1/Electro/Pictures
+    state: mounted
+    fstype: nfs
+  when: filerun is defined and filerun
+
+- name: Get data content - Videos
+  ansible.posix.mount:
+    path: /opt/filerun/user-files/Video
+    src: store.hiroyagojo.com:/volume1/Electro/Video
+    state: mounted
+    fstype: nfs
+  when: filerun is defined and filerun
+
+- name: Get data content - Audio
+  ansible.posix.mount:
+    path: /opt/filerun/user-files/Audio
+    src: store.hiroyagojo.com:/volume1/Electro/Audio
+    state: mounted
+    fstype: nfs
+  when: filerun is defined and filerun
+
+- name: Run filerun
+  docker_compose:
+    project_src: /opt/filerun
+    restarted: true
+  when: filerun is defined and filerun
