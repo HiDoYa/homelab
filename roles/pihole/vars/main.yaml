@@ -1,7 +1,5 @@
 # sqlite3 gravity.db
 
-pihole_webpass: NONE
-
 # Table: adlist, adlist_by_group
 pihole_block_lists:
   - "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"
