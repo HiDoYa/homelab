@@ -20,6 +20,11 @@
     capabilities:
       - NET_ADMIN
 
+- name: Make directory if DNE
+  file:
+    path: /opt/pihole
+    state: directory
+
 - name: Create DNS file
   template:
     src: files/custom.list.j2
