@@ -21,26 +21,10 @@
   include_tasks: ../../../tasks/nfs.yaml
   when: filerun is defined and filerun
 
-- name: Get data content - Pictures
+- name: Get data content
   ansible.posix.mount:
-    path: /opt/filerun/user-files/Pictures
-    src: store.hiroyagojo.com:/volume1/Electro/Pictures
-    state: mounted
-    fstype: nfs
-  when: filerun is defined and filerun
-
-- name: Get data content - Videos
-  ansible.posix.mount:
-    path: /opt/filerun/user-files/Video
-    src: store.hiroyagojo.com:/volume1/Electro/Video
-    state: mounted
-    fstype: nfs
-  when: filerun is defined and filerun
-
-- name: Get data content - Audio
-  ansible.posix.mount:
-    path: /opt/filerun/user-files/Audio
-    src: store.hiroyagojo.com:/volume1/Electro/Audio
+    path: /opt/filerun/user-files/Electro
+    src: store.hiroyagojo.com:/volume1/Electro
     state: mounted
     fstype: nfs
   when: filerun is defined and filerun
