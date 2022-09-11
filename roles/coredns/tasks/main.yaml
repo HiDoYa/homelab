@@ -1,0 +1,34 @@
+---
+# Note: This playbook is not currently being used, for test purposes only
+
+- name: Make directory if DNE
+  file:
+    path: /opt/coredns/root
+    state: directory
+  when: coredns is defined and coredns
+
+- name: Copy corefile
+  copy:
+    src: files/Corefile
+    dest: /opt/coredns/root/Corefile
+  when: coredns is defined and coredns
+
+- name: Copy DNS records
+  copy:
+    src: files/svc.hiroyagojo.db
+    dest: /opt/coredns/root/svc.hiroyagojo.db
+  when: coredns is defined and coredns
+
+- name: Run coredns
+  docker_container:
+    name: coredns
+    image: coredns/coredns
+    detach: true
+    restart_policy: always
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+    volumes:
+      - /opt/coredns/root/:/root
+    command: -conf /root/Corefile
+  when: coredns is defined and coredns

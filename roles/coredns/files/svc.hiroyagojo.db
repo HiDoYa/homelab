@@ -1,0 +1,12 @@
+$ORIGIN   svc.hiroyagojo.com.                          ; designates the start of this zone file in the namespace
+$TTL      1h                                           ; default expiration time of all resource records without their own TTL value
+@  IN SOA svc.hiroyagojo.com. hiroyagojo.gmail.com (
+                              2022090310               ; Serial
+                              1d                       ; Refresh
+                              2h                       ; Retry
+                              4w                       ; Expire
+                              1h)                      ; Minimum TTL
+@  IN A       192.168.2.5                              ; Local IPv4 address for svc.hiroyagojo.com
+@  IN NS      ns.svc.hiroyagojo.com.                   ; Name server for svc.hiroyagojo.com
+ns IN CNAME   @                                        ; Alias for name server
+*  IN CNAME   @                                        ; Alias for svc.hiroyagojo.com

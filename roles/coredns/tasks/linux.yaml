@@ -1,0 +1,11 @@
+---
+# Systemd-resolved manages nameservers and  is running on default for Ubuntu
+# It also takes up port 53 so we can't use it with coredns
+- name: Disable and stop systemd-resolved
+  systemd:
+    name: systemd-resolved
+    state: stopped
+    enabled: false
+
+- name: Set resolv.conf manually
+  # TODO Set nameserver to localhost
