@@ -10,6 +10,7 @@ services:
       MYSQL_PASSWORD: "{{ MYSQL_FILERUN_PASSWORD }}"
     volumes:
       - ./db:/var/lib/mysql
+    restart: always
 
   filerun_web:
     image: filerun/filerun
@@ -32,3 +33,4 @@ services:
     volumes:
       - ./html:/var/www/html
       - ./user-files:/user-files
+    restart: always
