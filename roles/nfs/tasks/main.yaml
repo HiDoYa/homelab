@@ -1,0 +1,22 @@
+---
+- name: Add nfs client
+  apt:
+    name: nfs-common
+    state: present
+    update_cache: true
+
+- name: Construct fstab line
+  set_fact:
+    fstab_line: "{{ nfs_address }}:{{ nfs_source }} {{ nfs_dest }} nfs defaults 0 0"
+
+- name: Add line to file to persist NFS to restarts
+  lineinfile:
+    path: /etc/fstab
+    line: "{{ fstab_line }}"
+
+- name: Mount nfs now
+  ansible.posix.mount:
+    path: "{{ nfs_dest }}"
+    src: "{{ nfs_address }}:{{ nfs_source }}"
+    state: mounted
+    fstype: nfs

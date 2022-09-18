@@ -17,16 +17,13 @@
     state: directory
   when: filerun is defined and filerun
 
-- name: Include nfs utils
-  include_tasks: ../../../tasks/nfs.yaml
-  when: filerun is defined and filerun
-
 - name: Get data content
-  ansible.posix.mount:
-    path: /opt/filerun/user-files/Electro
-    src: store.hiroyagojo.com:/volume1/Electro
-    state: mounted
-    fstype: nfs
+  include_role:
+    name: nfs
+  vars:
+    nfs_address: store.hiroyagojo.com
+    nfs_source: /volume1/Electro
+    nfs_dest: /opt/filerun/user-files/Electro
   when: filerun is defined and filerun
 
 - name: Run filerun
