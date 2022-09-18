@@ -1,0 +1,28 @@
+---
+- name: Get vault config
+  set_fact:
+    vault_config_contents: "{{ lookup('template', 'vault_config.json.j2', convert_data=False) | string }}"
+  when: vault_server is defined and vault_server
+
+- name: Create required directories
+  file:
+    path: /opt/vault/config
+    state: directory
+  when: vault_server is defined and vault_server
+
+- name: Run vault
+  docker_container:
+    name: vault
+    image: vault
+    detach: true
+    restart_policy: always
+    capabilities:
+      - IPC_LOCK
+    ports:
+      - "8200:8200/tcp"
+    volumes:
+      - /opt/vault:/vault
+    command: server
+    env:
+      VAULT_LOCAL_CONFIG: "{{ vault_config_contents }}"
+  when: vault_server is defined and vault_server

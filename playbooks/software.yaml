@@ -59,3 +59,10 @@
       apply:
         tags: ['filerun']
     tags: ['filerun']
+
+  - name: Install vault
+    include_role:
+      name: vault
+      apply:
+        tags: ['vault']
+    tags: ['vault']

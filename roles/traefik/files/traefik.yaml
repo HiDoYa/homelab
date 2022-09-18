@@ -49,6 +49,11 @@ http:
       service: traefik-admin-service
       middlewares:
         - auth
+    vault-router:
+      rule: Host(`vault.svc.hiroyagojo.com`)
+      service: vault-service
+      middlewares:
+        - auth
 
   middlewares:
     auth:
@@ -81,3 +86,7 @@ http:
       loadBalancer:
         servers:
         - url: "http://node2.hiroyagojo.com:8080"
+    vault-service:
+      loadBalancer:
+        servers:
+        - url: "http://node1.hiroyagojo.com:8200"
