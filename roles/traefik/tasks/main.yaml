@@ -5,6 +5,11 @@
     state: directory
   when: traefik is defined and traefik
 
+- name: Get middleware admin pass from vault
+  set_fact:
+    admin_htpass: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=ansible_secrets/data/traefik' + vault_auth_string)['admin_htpass'] }}"
+  when: traefik is defined and traefik
+
 - name: Template configuration
   template:
     src: files/traefik.yaml

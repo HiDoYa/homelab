@@ -5,6 +5,19 @@
     state: directory
   when: filerun is defined and filerun
 
+- name: Get all filerun secrets from vault
+  set_fact:
+    filerun_secrets: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=ansible_secrets/data/filerun' + vault_auth_string) }}"
+  when: filerun is defined and filerun
+
+- name: Parse secrets
+  set_fact:
+    mysql_root_password: filerun_secrets['mysql_root_password']
+    mysql_filerun_database: filerun_secrets['mysql_filerun_database']
+    mysql_filerun_username: filerun_secrets['mysql_filerun_username']
+    mysql_filerun_password: filerun_secrets['mysql_filerun_password']
+  when: filerun is defined and filerun
+
 - name: Template configuration
   template:
     src: files/docker-compose.yaml
