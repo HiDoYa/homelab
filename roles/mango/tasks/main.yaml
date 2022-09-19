@@ -1,4 +1,13 @@
 ---
+- name: Get data content
+  include_role:
+    name: nfs
+  vars:
+    nfs_address: store.hiroyagojo.com
+    nfs_source: /volume1/Electro/Pictures/Manga
+    nfs_dest: /opt/mango/data/library
+  when: mango is defined and mango
+
 - name: Run mango
   docker_container: 
     name: mango
@@ -10,13 +19,4 @@
     volumes:
       - /opt/mango/data:/root/mango
       - /opt/mango/config:/root/.config/mango
-  when: mango is defined and mango
-
-- name: Get data content
-  include_role:
-    name: nfs
-  vars:
-    nfs_address: store.hiroyagojo.com
-    nfs_source: /volume1/Electro/Pictures/Manga
-    nfs_dest: /opt/mango/data/library
   when: mango is defined and mango
