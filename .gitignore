@@ -2,3 +2,4 @@ test.yaml
 *.bkp
 *.dtmp
 .DS_Store
+vault_secret.yaml
