@@ -1,10 +1,4 @@
 ---
-- name: Make directory if DNE
-  file:
-    path: /opt/traefik
-    state: directory
-  when: traefik is defined and traefik
-
 - name: Get middleware admin pass from vault
   set_fact:
     admin_htpass: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=ansible_secrets/data/traefik' + vault_auth_string)['admin_htpass'] }}"

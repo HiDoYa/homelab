@@ -1,10 +1,4 @@
 ---
-- name: Make directory if DNE
-  file:
-    path: /opt/filerun
-    state: directory
-  when: filerun is defined and filerun
-
 - name: Get all filerun secrets from vault
   set_fact:
     filerun_secrets: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=ansible_secrets/data/filerun' + vault_auth_string) }}"

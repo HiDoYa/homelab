@@ -5,6 +5,11 @@
     state: present
     update_cache: true
 
+- name: Make directory if DNE
+  file:
+    path: "{{ nfs_dest }}"
+    state: directory
+
 - name: Construct fstab line
   set_fact:
     fstab_line: "{{ nfs_address }}:{{ nfs_source }} {{ nfs_dest }} nfs defaults 0 0"
