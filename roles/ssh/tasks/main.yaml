@@ -1,6 +1,4 @@
 ---
-- include_tasks: ../tasks/get_home.yaml
-
 - name: Copy authorized_keys to remote server
   copy:
     src: files/authorized_keys
@@ -8,7 +6,7 @@
 
 - name: Check if daemon.json is different on server
   shell:
-    cmd: "diff /tmp/authorized_keys {{ home_path }}/.ssh/authorized_keys"
+    cmd: "diff /tmp/authorized_keys /home/ubuntu/.ssh/authorized_keys"
   register: file_diff
   changed_when: false
   failed_when: false
@@ -16,7 +14,7 @@
 - name: Copy new authorized_keys
   copy:
     src: /tmp/authorized_keys
-    dest: "{{ home_path }}/.ssh/authorized_keys"
+    dest: "/home/ubuntu/.ssh/authorized_keys"
     mode: '600'
     remote_src: true
   when: file_diff.rc != 0
