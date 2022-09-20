@@ -3,6 +3,7 @@
   copy:
     src: files/authorized_keys
     dest: /tmp/authorized_keys
+  become: true
 
 - name: Check if daemon.json is different on server
   shell:

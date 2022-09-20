@@ -3,11 +3,13 @@
   apt_key:
     url: https://download.docker.com/linux/ubuntu/gpg
     state: present
+  become: true
 
 - name: Add Docker Repository
   apt_repository:
     repo: "deb https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
     state: present
+  become: true
 
 - name: Update apt and install docker-ce
   apt:
@@ -17,6 +19,7 @@
       - containerd.io
     state: latest
     update_cache: true
+  become: true
 
 - name: Copy daemon.json to remote server
   copy:
@@ -36,6 +39,7 @@
     dest: /etc/docker/daemon.json
     remote_src: true
   when: file_diff.rc != 0
+  become: true
 
 - name: Ensure daemon changes take effect
   systemd:
@@ -43,6 +47,7 @@
     name: docker
     daemon_reload: true
   when: file_diff.rc != 0
+  become: true
 
 - name: Add user to docker group
   user:
@@ -50,12 +55,14 @@
     groups: docker
     append: true
     state: present
+  become: true
 
 - name: Add python3 pip
   apt:
     name: python3-pip
     state: present
     update_cache: true
+  become: true
 
 - name: Add python docker module
   pip:
@@ -67,3 +74,4 @@
     name: docker-compose
     state: present
     update_cache: true
+  become: true

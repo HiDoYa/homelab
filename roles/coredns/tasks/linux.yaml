@@ -6,6 +6,7 @@
     name: systemd-resolved
     state: stopped
     enabled: false
+  become: true
 
 - name: Set resolv.conf manually
   # TODO Set nameserver to localhost

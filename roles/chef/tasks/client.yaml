@@ -4,6 +4,7 @@
     deb: "{{ chef_client_download_url }}"
     state: present
     update_cache: true
+  become: true
 
 - name: Copy validator.pem from server
   fetch:
@@ -16,9 +17,11 @@
   template:
     src: files/client.rb.j2
     dest: /etc/chef/client.rb
+  become: true
     
 - name: Copy validator.pem
   copy:
     src: /tmp/chef-validation.pem
     dest: /etc/chef/validation.pem
     mode: "0600"
+  become: true

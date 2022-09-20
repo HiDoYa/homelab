@@ -1,13 +1,14 @@
 --- 
 - name: Startup servers
   hosts: rasps
-  become: true
+
   tasks:
   - name: See if wakeonlan binary exists
     shell:
       cmd: /usr/local/bin/wakeonlan
     register: result
     failed_when: false
+    become: true
 
   - name: Get wakeonlan binary
     uri:
@@ -15,6 +16,7 @@
       dest: /usr/local/bin/wakeonlan
       mode: "755"
     when: result.rc != 0
+    become: true
 
   - name: Get MAC Addresses
     set_fact:

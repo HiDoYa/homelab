@@ -4,21 +4,25 @@
     deb: "{{ chef_server_download_url }}"
     state: present
     update_cache: true
+  become: true
 
 - name: Copy chef-server.rb
   copy:
     src: files/chef-server.rb
     dest: /etc/opscode/chef-server.rb
+  become: true
 
 - name: Reconfigure chef server
   shell:
     cmd: chef-server-ctl reconfigure
+  become: true
 
 - name: Check if admin exists
   shell:
     cmd: chef-server-ctl user-list
   register: user_list
   changed_when: false
+  become: true
 
 - name: Store if admin exists
   set_fact:
@@ -32,9 +36,12 @@
         {{ chef_admin.first }} {{ chef_admin.last }} \
         {{chef_admin.email }} {{ chef_admin.password }} \
         --filname \"{{ home_path }}/{{ chef_admin_fname }}\""
+    become: true
+
   - name: Add admin privileges
     shell:
       cmd: "chef-server-ctl grant-server-admin-permissions {{ chef_admin.username }}"
+    become: true
   when: not admin_exists
 
 - name: Check if org exists
@@ -42,6 +49,7 @@
     cmd: chef-server-ctl org-list
   register: org_list
   changed_when: false
+  become: true
 
 - name: Store if org exists
   set_fact:
@@ -53,3 +61,4 @@
       --association_user {{ chef_admin.username }} \
       --filename \"{{ home_path }}/{{ chef_org_fname }}\""
   when: not org_exists
+  become: true

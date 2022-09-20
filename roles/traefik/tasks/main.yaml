@@ -9,6 +9,7 @@
     src: files/traefik.yaml
     dest: /opt/traefik/traefik.yaml
   when: traefik is defined and traefik
+  become: true
 
 - name: Run traefik
   docker_container: 

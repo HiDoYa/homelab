@@ -1,7 +1,6 @@
 ---
 - name: Initialize systems
   hosts: servers,rasps
-  become: true
 
   roles:
   - ssh
@@ -11,6 +10,7 @@
     group:
       name: wheel
       state: present
+    become: true
 
   - name: Allow 'wheel' group to have passwordless sudo
     lineinfile:
@@ -19,6 +19,7 @@
       regexp: '^%wheel'
       line: '%wheel ALL=(ALL) NOPASSWD: ALL'
       validate: 'visudo -cf %s'
+    become: true
 
   - name: Add sudoers users to wheel group
     user:
@@ -27,10 +28,12 @@
       append: true
       state: present
       createhome: true
+    become: true
 
   - name: Set hostname
     hostname:
       name: "{{ inventory_hostname }}"
+    become: true
 
   - name: Add nfs to scratch storage 
     include_role:

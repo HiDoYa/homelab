@@ -2,5 +2,6 @@
 - name: Reboot servers
   hosts: servers
   become: true
+
   tasks:
   - import_tasks: reboot.yaml

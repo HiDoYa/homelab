@@ -2,6 +2,7 @@
 - name: Maintenance
   hosts: servers,rasps
   become: true
+
   tasks:
   - name: Maintain packages
     apt:

@@ -4,6 +4,7 @@
     name: nfs-common
     state: present
     update_cache: true
+  become: true
 
 - name: Make directory if DNE
   file:
@@ -18,6 +19,7 @@
   lineinfile:
     path: /etc/fstab
     line: "{{ fstab_line }}"
+  become: true
 
 - name: Mount nfs now
   ansible.posix.mount:
@@ -25,3 +27,4 @@
     src: "{{ nfs_address }}:{{ nfs_source }}"
     state: mounted
     fstype: nfs
+  become: true

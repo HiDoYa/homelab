@@ -9,6 +9,7 @@
     path: /opt/vault/config
     state: directory
   when: vault_server is defined and vault_server
+  become: true
 
 - name: Run vault
   docker_container:

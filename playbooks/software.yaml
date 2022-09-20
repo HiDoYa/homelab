@@ -1,7 +1,7 @@
 ---
 - name: Install software for servers
   hosts: servers,rasps
-  become: true
+
   tasks:
   - name: Install docker
     include_role:
@@ -12,7 +12,7 @@
 
 - name: Install software for raspberry pi server
   hosts: rasps
-  become: true
+
   tasks:
   - name: Install pihole
     include_role:
@@ -23,7 +23,7 @@
 
 - name: Install software for dell servers
   hosts: servers
-  become: true
+
   tasks:
   - name: Install consul
     include_role:
