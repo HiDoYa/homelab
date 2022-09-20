@@ -1,30 +1,30 @@
 ---
-- name: Run pihole
-  docker_container:
-    name: pihole
-    image: pihole/pihole:latest
-    detach: true
-    restart_policy: always
-    ports:
-      - "53:53/tcp"
-      - "53:53/udp"
-      - "67:67/udp"
-      - "80:80/tcp"
-    env:
-      TZ: 'America/Chicago'
-      WEBPASSWORD: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=ansible_secrets/data/pihole' + vault_auth_string)['admin_pass'] }}"
-      VIRTUAL_HOST: "{{ dns_address }}"
-    volumes:
-      - './etc-pihole/:/etc/pihole/'
-      - './etc-dnsmasq.d/:/etc/dnsmasq.d/'
-    capabilities:
-      - NET_ADMIN
-
 - name: Make directory if DNE
   file:
     path: /opt/pihole
     state: directory
   become: true
+
+- name: Run pihole
+  docker_container:
+    name: pihole
+    image: pihole/pihole:latest
+    detach: true
+    restart: true
+    restart_policy: always
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "80:80/tcp"
+    env:
+      TZ: "America/Los_Angeles"
+      WEBPASSWORD: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=ansible_secrets/data/pihole' + vault_auth_string)['admin_pass'] }}"
+      VIRTUAL_HOST: "{{ dns_address }}"
+      # Forward private IPs
+      DNS_BOGUS_PRIV: "false"
+    volumes:
+      - "/opt/pihole/etc-pihole/:/etc/pihole/"
+      - "/opt/pihole/etc-dnsmasq.d/:/etc/dnsmasq.d/"
 
 - name: Create DNS file
   template:
@@ -32,9 +32,19 @@
     dest: /opt/pihole/etc-pihole/custom.list
   become: true
 
+- name: Add whitelist domains
+  shell:
+    cmd: "docker exec -it pihole pihole --white-regex '(\\.|^){{ item }}$'"
+  loop: "{{ pihole_whitelist }}"
+
 - name: Ensure sqlite3 is installed
   apt:
     name: sqlite3
     update_cache: true
   become: true
 
+- name: Add adlists
+  shell:
+    cmd: "sqlite3 /opt/pihole/etc-pihole/gravity.db \"INSERT OR IGNORE INTO adlist (address, enabled, comment) VALUES ('{{ item }}', 1, '');\""
+  loop: "{{ pihole_blocklist }}"
+  become: true

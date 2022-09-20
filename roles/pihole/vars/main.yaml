@@ -1,12 +1,8 @@
-# sqlite3 gravity.db
-
-# Table: adlist, adlist_by_group
-pihole_block_lists:
+pihole_blocklist:
   - "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"
   - "https://dbl.oisd.nl/"
   - "https://v.firebog.net/hosts/AdguardDNS.txt"
 
-# Table: client, client_by_group
 pihole_whitelist:
   - "thetradedesk.com"
   - "adsrvr.org"
