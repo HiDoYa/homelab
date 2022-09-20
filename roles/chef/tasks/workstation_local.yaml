@@ -2,6 +2,10 @@
 # We assume chef workstation is already installed locally
 # i.e. local installations are not the purpose of this ansible repo
 
+- name: Set chef workstation dir
+  set_fact:
+    chef_workstation_path: "{{ chef_workstation_local_path }}"
+
 - name: Create directory structure
   file:
     path: "{{ chef_workstation_path }}"

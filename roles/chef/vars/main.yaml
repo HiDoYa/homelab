@@ -5,6 +5,9 @@ chef_server_download_url: "https://packages.chef.io/files/stable/chef-server/{{ 
 chef_client_version: 17.10.3
 chef_client_download_url: "https://packages.chef.io/files/stable/chef/{{ chef_client_version }}/ubuntu/20.04/chef_{{ chef_client_version }}-1_amd64.deb"
 
+chef_workstation_version: 22.7.1006
+chef_workstation_download_url: "https://packages.chef.io/files/stable/chef-workstation/{{ chef_workstation_version }}/ubuntu/20.04/chef-workstation_{{ chef_workstation_version }}-1_amd64.deb"
+
 chef_org: homelab
 chef_org_fname: "chef-org-{{ chef_org }}-validator.pem"
 
@@ -13,7 +16,8 @@ chef_admin:
   first: hiroya
   last: gojo
   email: hiroyagojo@gmail.com
-  password: NONE
+  password: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=ansible_secrets/data/chef' + vault_auth_string)['admin_pass'] }}"
 chef_admin_fname: "chef-user-{{ chef_admin.username }}.pem"
 
-chef_workstation_path: "/Users/hiroya.gojo/.chef-personal"
+chef_workstation_local_path: "/Users/hiroya.gojo/.chef-personal"
+chef_workstation_remote_path: "/home/ubuntu/.chef"

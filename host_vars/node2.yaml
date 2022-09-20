@@ -4,3 +4,4 @@ dns_address: "node2.hiroyagojo.com"
 
 traefik: true
 mango: true
+chef_workstation: true
