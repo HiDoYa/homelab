@@ -12,7 +12,7 @@
       - "80:80/tcp"
     env:
       TZ: 'America/Chicago'
-      WEBPASSWORD: "{{ pihole_webpass }}"
+      WEBPASSWORD: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=ansible_secrets/data/pihole' + vault_auth_string)['admin_pass'] }}"
       VIRTUAL_HOST: "{{ dns_address }}"
     volumes:
       - './etc-pihole/:/etc/pihole/'
