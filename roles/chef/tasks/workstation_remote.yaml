@@ -1,7 +1,7 @@
 ---
 - name: Add chef GPG apt Key
   apt_key:
-    url: https://packages.chef.io/chef.asc
+    url: "{{ chef_gpg_key }}"
     state: present
   become: true
   when: chef_workstation is defined and chef_workstation
@@ -30,13 +30,12 @@
   template:
     src: files/config.rb.j2
     dest: "{{ chef_workstation_path }}/config.rb"
-  become: false
   when: chef_workstation is defined and chef_workstation
 
 - name: Copy admin pem from server
   fetch:
     flat: true
-    src: /home/ubuntu/chef-user-admin.pem
+    src: "{{ chef_admin_pem_path }}"
     dest: "/tmp/chef-user-admin.pem"
     mode: "0600"
   when: chef_server is defined and chef_server

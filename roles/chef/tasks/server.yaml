@@ -34,8 +34,8 @@
     shell:
       cmd: "chef-server-ctl user-create {{ chef_admin.username }} \
         {{ chef_admin.first }} {{ chef_admin.last }} \
-        {{chef_admin.email }} {{ chef_admin.password }} \
-        --filname \"{{ home_path }}/{{ chef_admin_fname }}\""
+        {{ chef_admin.email }} {{ chef_admin.password }} \
+        --filename \"{{ chef_admin_pem_path }}\""
     become: true
 
   - name: Add admin privileges
@@ -59,6 +59,6 @@
   shell:
     cmd: "chef-server-ctl org-create {{ chef_org }} {{ chef_org | capfirst }} \
       --association_user {{ chef_admin.username }} \
-      --filename \"{{ home_path }}/{{ chef_org_fname }}\""
+      --filename \"{{ chef_org_pem_path }}\""
   when: not org_exists
   become: true

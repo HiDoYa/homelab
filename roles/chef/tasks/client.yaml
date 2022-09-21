@@ -9,7 +9,7 @@
 - name: Copy validator.pem from server
   fetch:
     flat: true
-    src: "/home/ubuntu/{{ chef_org_fname }}"
+    src: "{{ chef_org_pem_path }}"
     dest: /tmp/chef-validation.pem
   when: chef_server is defined and chef_server
 
