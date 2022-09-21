@@ -35,6 +35,7 @@
 
 - name: Copy admin pem from server
   fetch:
+    flat: true
     src: /home/ubuntu/chef-user-admin.pem
     dest: "/tmp/chef-user-admin.pem"
     mode: "0600"
