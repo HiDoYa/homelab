@@ -1,5 +1,5 @@
 ---
-- name: Initialize k8 node
+- name: Initialize kube node
   shell:
-    cmd: "{{ k8_join_cmd }}"
+    cmd: "{{ kube_join_cmd }}"
   become: true

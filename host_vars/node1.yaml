@@ -4,5 +4,5 @@ dns_address: "node1.hiroyagojo.com"
 
 chef_server: true
 consul_leader: true
-k8_master: true
+kube_master: true
 vault_server: true

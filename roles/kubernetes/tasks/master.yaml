@@ -1,16 +1,16 @@
 ---
-- name: Initialize k8 master
+- name: Initialize kube master
   shell:
     cmd: |
       kubeadm init \
         --apiserver-advertise-address={{ ip }} \
-        --pod-network-cidr={{ k8_subnet }}
-  register: k8_init_output
+        --pod-network-cidr={{ kube_subnet }}
+  register: kube_init_output
   become: true
 
-- name: Get k8 join command
+- name: Get kube join command
   set_fact:
-    k8_join_cmd: "{{ k8_init_output.stdout_lines[-2:] | map('trim') | join('') | regex_replace('[\\t|\\\\]+','') }}"
+    kube_join_cmd: "{{ kube_init_output.stdout_lines[-2:] | map('trim') | join('') | regex_replace('[\\t|\\\\]+','') }}"
 
 - name: Get kube config (for local dev)
   fetch:
