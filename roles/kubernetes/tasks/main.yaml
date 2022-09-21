@@ -1,0 +1,72 @@
+---
+- name: Add apt key
+  apt_key:
+    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+    keyring: /usr/share/keyrings/kubernetes-archive-keyring.gpg 
+  become: true
+
+- name: Add repository
+  apt_repository:
+    repo: deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main
+  become: true
+
+- name: Install dependencies
+  apt:
+    name:
+      - kubeadm
+      - kubelet
+      - kubectl
+      - containerd
+    state: latest
+    update_cache: true
+  become: true
+
+- name: Set containerd config
+  copy:
+    dest: /etc/containerd/config.toml
+    content: disabled_plugins = []
+  become: true
+
+- name: Restart containerd
+  systemd:
+    name: containerd
+    state: restarted
+  become: true
+
+- name: Get k8 master node name
+  set_fact:
+    k8_master_nodename: "{{ item if hostvars[item]['k8_master'] is defined and hostvars[item]['k8_master'] else k8_master_nodename }}"
+  loop: "{{ groups['servers'] }}"
+  run_once: true
+  delegate_to: localhost
+
+- name: Get k8 master IP
+  set_fact:
+    k8_master_ip: "{{ hostvars[k8_master_nodename]['ip'] }}"
+  run_once: true
+  delegate_to: localhost
+
+- name: Kubernetes master
+  include_tasks: master.yaml
+  when: k8_master is defined and k8_master
+
+- name: Get k8 join cmd from k8 master
+  set_fact:
+    k8_join_cmd: "{{ hostvars[k8_master_nodename]['k8_join_cmd'] }}"
+  run_once: true
+  delegate_to: localhost
+
+- name: Kubernetes node
+  include_tasks: node.yaml
+  when: k8_node is defined and k8_node
+
+- name: Ensure kube config directory exists
+  file:
+    path: "{{ kube_remote_dir }}"
+    state: directory
+
+- name: Copy kube config to all nodes
+  copy:
+    src: "{{ kube_local_path }}"
+    dest:  "{{ kube_remote_path }}"
+  when: (k8_master is defined and k8_master) or (k8_node is defined and k8_node)

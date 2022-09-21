@@ -1,0 +1,5 @@
+---
+- name: Initialize k8 node
+  shell:
+    cmd: "{{ k8_join_cmd }}"
+  become: true

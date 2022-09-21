@@ -1,0 +1,5 @@
+kube_local_path: "/Users/hiroya.gojo/.kube/homeconfig"
+kube_remote_dir: "/home/ubuntu/.kube/"
+kube_remote_path: "{{ kube_remote_dir }}config"
+
+k8_subnet: 192.168.5.0/24
