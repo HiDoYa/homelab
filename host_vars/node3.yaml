@@ -4,3 +4,4 @@ dns_address: "node3.hiroyagojo.com"
 
 kube_node: true
 filerun: true
+homer: true

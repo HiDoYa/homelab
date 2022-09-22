@@ -1,0 +1,29 @@
+---
+- name: Ensure directory exists
+  file:
+    path: /opt/homer/assets
+    state: directory
+  become: true
+  when: homer is defined and homer
+
+- name: Copy necessary files
+  copy:
+    src: files/assets
+    dest: /opt/homer
+  become: true
+  when: homer is defined and homer
+
+- name: Run homer
+  docker_container: 
+    name: homer
+    image: b4bz/homer:latest
+    detach: true
+    restart_policy: always
+    volumes:
+      - /opt/homer/assets:/www/assets
+    user: 0:0
+    ports:
+      - 8080:8080
+    env:
+      INIT_ASSETS: "0"
+  when: homer is defined and homer

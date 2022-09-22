@@ -73,3 +73,10 @@
       apply:
         tags: ['kubernetes']
     tags: ['kubernetes']
+
+  - name: Install homer
+    include_role:
+      name: homer
+      apply:
+        tags: ['homer']
+    tags: ['homer']

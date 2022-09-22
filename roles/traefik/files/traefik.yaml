@@ -54,6 +54,11 @@ http:
       service: vault-service
       middlewares:
         - auth
+    homer-router:
+      rule: Host(`homer.svc.hiroyagojo.com`)
+      service: homer-service
+      middlewares:
+        - auth
 
   middlewares:
     auth:
@@ -90,3 +95,7 @@ http:
       loadBalancer:
         servers:
         - url: "http://node1.hiroyagojo.com:8200"
+    homer-service:
+      loadBalancer:
+        servers:
+        - url: "http://node3.hiroyagojo.com:8080"
