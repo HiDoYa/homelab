@@ -22,8 +22,6 @@ http:
     mango-router:
       rule: Host(`mango.svc.hiroyagojo.com`)
       service: mango-service
-      middlewares:
-        - auth
     consul-router:
       rule: Host(`consul.svc.hiroyagojo.com`)
       service: consul-service
@@ -32,18 +30,12 @@ http:
     pihole-router:
       rule: Host(`pihole.svc.hiroyagojo.com`)
       service: pihole-service
-      middlewares:
-        - auth
     store-router:
       rule: Host(`store.svc.hiroyagojo.com`)
       service: store-service
-      middlewares:
-        - auth
     filerun-router:
       rule: Host(`filerun.svc.hiroyagojo.com`)
       service: filerun-service
-      middlewares:
-        - auth
     traefik-admin-router:
       rule: Host(`traefik-admin.svc.hiroyagojo.com`)
       service: traefik-admin-service
@@ -52,13 +44,9 @@ http:
     vault-router:
       rule: Host(`vault.svc.hiroyagojo.com`)
       service: vault-service
-      middlewares:
-        - auth
     homer-router:
       rule: Host(`homer.svc.hiroyagojo.com`)
       service: homer-service
-      middlewares:
-        - auth
 
   middlewares:
     auth:
