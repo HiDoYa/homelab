@@ -11,67 +11,58 @@ links:
     icon: "fas fa-book"
     url: "https://portfolio.hiroyagojo.com"
 
-# Services
 services:
   - name: "Application"
     icon: "fas fa-code-branch"
     items:
+      - name: "Filerun"
+        logo: "assets/images/filerun.png"
+        subtitle: "File browser"
+        url: "http://filerun.svc.hiroyagojo.com"
+
+      - name: "Mango"
+        logo: "assets/images/mango.png"
+        subtitle: "Image browser"
+        url: "http://mango.svc.hiroyagojo.com"
+
+  - name: "Infra"
+    icon: "fas fa-microchip"
+    items:
       - name: "Vault"
         logo: "assets/images/vault.png"
         subtitle: "Secrets manager"
-        tag: "app"
-        tagstyle: "is-success"
-        url: "vault.svc.hiroyagojo.com"
+        url: "http://vault.svc.hiroyagojo.com"
 
       - name: "Consul"
         logo: "assets/images/consul.png"
-        subtitle: "Service networking"
-        tag: "app"
-        tagstyle: "is-success"
-        url: "consul.svc.hiroyagojo.com"
+        subtitle: "Service mesh"
+        url: "http://consul.svc.hiroyagojo.com"
 
       - name: "Synology NFS"
         logo: "assets/images/synology.png"
         subtitle: "File storage"
-        tag: "app"
-        tagstyle: "is-success"
-        url: "store.hiroyagojo.com"
-
-      - name: "Filerun"
-        logo: "assets/images/filerun.png"
-        subtitle: "File browser"
-        tag: "app"
-        tagstyle: "is-success"
-        url: "filerun.svc.hiroyagojo.com"
+        url: "http://store.hiroyagojo.com"
 
   - name: "Networking"
     icon: "fas fa-heartbeat"
     items:
       - name: "Pi-hole"
         logo: "assets/images/pihole.png"
-        tag: "app"
+        subtitle: "DNS Ad Blocker"
         url: "http://rasp1.hiroyagojo.com/admin"
-        type: "PiHole" 
-        # class: "green" # optional custom CSS class for card, useful with custom stylesheet
-        # background: red # optional color for card to set color directly without custom stylesheet
 
       - name: "Traefik"
         logo: "assets/images/traefik.png"
         subtitle: "Web proxy"
-        tag: "app"
-        url: "traefik-admin.svc.hiroyagojo.com"
+        url: "http://traefik-admin.svc.hiroyagojo.com"
 
       - name: "Opnsense"
         logo: "assets/images/opnsense.png"
         subtitle: "Network firewall"
-        tag: "app"
-        tagstyle: "is-success"
-        url: "hiroyagojo.com"
+        url: "http://hiroyagojo.com"
 
       - name: "Unifi Dream Machine"
         logo: "assets/images/unifi.png"
         subtitle: "Wireless access point"
-        tag: "app"
-        tagstyle: "is-success"
-        url: "udm.hiroyagojo.com"
+        url: "http://udm.hiroyagojo.com"
   
