@@ -71,7 +71,7 @@
 
 - name: Add docker compose
   apt:
-    name: docker-compose
+    name: docker-compose-plugin
     state: present
     update_cache: true
   become: true
