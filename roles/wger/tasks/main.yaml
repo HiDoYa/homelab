@@ -62,7 +62,7 @@
           - cache
       when: wger is defined and wger
 
-    - name: Pause for 5 seconds to let postgre to load
+    - name: Pause for 5 seconds to let postgres load
       pause:
         seconds: 5
       when: wger is defined and wger
@@ -70,6 +70,11 @@
     - name: Run wger
       docker_compose:
         project_src: "{{ wger_path }}"
+      when: wger is defined and wger
+
+    - name: Pause for 20 seconds to let wger load
+      pause:
+        seconds: 20 
       when: wger is defined and wger
 
 - name: Download exercises images and ingredients
