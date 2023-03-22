@@ -34,11 +34,3 @@
     hostname:
       name: "{{ inventory_hostname }}"
     become: true
-
-  - name: Add nfs to scratch storage 
-    include_role:
-      name: nfs
-    vars:
-      nfs_address: store.hiroyagojo.com
-      nfs_source: /volume1/Scratch
-      nfs_dest: /home/ubuntu/Scratch
