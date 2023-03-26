@@ -15,3 +15,8 @@ Run a playbook:
 ```
 ansible-playbook -i hosts.ini playbooks/software.yaml --tags pihole
 ```
+
+Export drawio:
+```
+drawio --export homelab.drawio -b 25 --format jpg
+```
