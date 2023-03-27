@@ -10,6 +10,7 @@
     name: pihole
     image: pihole/pihole:latest
     detach: true
+    recreate: true
     restart: true
     restart_policy: always
     ports:
