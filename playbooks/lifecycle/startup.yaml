@@ -18,13 +18,23 @@
     when: result.rc != 0
     become: true
 
+  - name: Select all servers (extravar node)
+    set_fact:
+      servers: "{{ servers | default([]) + [item] }}"
+    when: node is not defined
+    loop: "{{ groups['servers'] }}"
+
+  - name: Select specific server (extravar node)
+    set_fact:
+      servers: "{{ [node] }}"
+    when: node is defined
+
   - name: Get MAC Addresses
     set_fact:
       mac_addresses: "{{ mac_addresses | default([]) + [hostvars[item].mac] }}"
-    loop: "{{ groups['servers'] }}"
+    loop: "{{ servers }}"
 
   - name: Send wakeonlan broadcasts to the subnet
     shell:
       cmd: "wakeonlan {{ item }}"
     loop: "{{ mac_addresses }}"
-    register: test

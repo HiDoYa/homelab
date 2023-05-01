@@ -7,3 +7,4 @@
   - name: Shutdown servers
     community.general.shutdown:
       msg: "Ansible triggered shutdown"
+    when: not(node is defined and inventory_hostname not in node)
