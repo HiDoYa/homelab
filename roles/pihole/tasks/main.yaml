@@ -11,6 +11,7 @@
     image: pihole/pihole:latest
     detach: true
     recreate: true
+    pull: true
     restart: true
     restart_policy: always
     ports:
@@ -46,6 +47,6 @@
 
 - name: Add adlists
   shell:
-    cmd: "sqlite3 /opt/pihole/etc-pihole/gravity.db \"INSERT OR IGNORE INTO adlist (address, enabled, comment) VALUES ('{{ item }}', 1, '');\""
+    cmd: 'sqlite3 /opt/pihole/etc-pihole/gravity.db "INSERT OR IGNORE INTO adlist (address, enabled, comment) VALUES (''{{ item }}'', 1, '''');"'
   loop: "{{ pihole_blocklist }}"
   become: true

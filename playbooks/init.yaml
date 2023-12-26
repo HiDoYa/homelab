@@ -3,34 +3,43 @@
   hosts: servers,rasps
 
   roles:
-  - ssh
+    - ssh
+    - bashrc
 
   tasks:
-  - name: Ensure group "wheel" exists
-    group:
-      name: wheel
-      state: present
-    become: true
+    - name: Ensure group "wheel" exists
+      group:
+        name: wheel
+        state: present
+      become: true
 
-  - name: Allow 'wheel' group to have passwordless sudo
-    lineinfile:
-      path: /etc/sudoers
-      state: present
-      regexp: '^%wheel'
-      line: '%wheel ALL=(ALL) NOPASSWD: ALL'
-      validate: 'visudo -cf %s'
-    become: true
+    - name: Allow 'wheel' group to have passwordless sudo
+      lineinfile:
+        path: /etc/sudoers
+        state: present
+        regexp: "^%wheel"
+        line: "%wheel ALL=(ALL) NOPASSWD: ALL"
+        validate: "visudo -cf %s"
+      become: true
 
-  - name: Add sudoers users to wheel group
-    user:
-      name: ubuntu
-      groups: wheel
-      append: true
-      state: present
-      createhome: true
-    become: true
+    - name: Add sudoers users to wheel group
+      user:
+        name: ubuntu
+        groups: wheel
+        append: true
+        state: present
+        createhome: true
+      become: true
 
-  - name: Set hostname
-    hostname:
-      name: "{{ inventory_hostname }}"
-    become: true
+    - name: Set hostname
+      hostname:
+        name: "{{ inventory_hostname }}"
+      become: true
+
+    - name: Set DNS server manually to avoid DHCP handing out this DNS server to all devices
+      lineinfile:
+        path: /etc/resolv.conf
+        line: nameserver 192.168.2.2
+        insertbefore: "BOF"
+        state: present
+      become: true
