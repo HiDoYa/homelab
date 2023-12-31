@@ -1,10 +1,10 @@
-<mxfile host="Electron" modified="2023-12-29T00:37:01.330Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.2.8 Chrome/112.0.5615.165 Electron/24.2.0 Safari/537.36" etag="eOazXbQg-vB77lag8w9H" version="21.2.8" type="device">
+<mxfile host="Electron" modified="2023-12-31T07:03:57.476Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.16 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="QZ8zAV71Bn1BUMEbeEra" version="22.1.16" type="device">
   <diagram id="5LQw1LaJcU4KPZNjuxa2" name="Page-1">
-    <mxGraphModel dx="2156" dy="820" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1876" dy="671" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="JLc08Lia9JhNM9PG2oi6-12" value="Management Subnet 192.168.0.0/24&lt;br style=&quot;font-size: 12px;&quot;&gt;VLAN 100" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;fillColor=#ffe6cc;strokeColor=#d79b00;verticalAlign=top;align=center;" parent="1" vertex="1">
+        <mxCell id="JLc08Lia9JhNM9PG2oi6-12" value="Management Subnet 172.18.0.0/24&lt;br style=&quot;font-size: 12px;&quot;&gt;VLAN 100" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;fillColor=#ffe6cc;strokeColor=#d79b00;verticalAlign=top;align=center;" parent="1" vertex="1">
           <mxGeometry x="296" y="320" width="334" height="220" as="geometry" />
         </mxCell>
         <mxCell id="AMfL3vu9wzqD86BI1HrZ-1" value="&lt;font style=&quot;font-size: 13px;&quot;&gt;Elevation Diagram (12U Rack)&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=8;fillColor=#f5f5f5;strokeColor=#666666;verticalAlign=top;fontColor=#333333;" parent="1" vertex="1">
@@ -49,10 +49,10 @@
         <mxCell id="AMfL3vu9wzqD86BI1HrZ-16" value="" style="rounded=0;whiteSpace=wrap;html=1;fontSize=13;fillColor=#E8E8E8;fontColor=#333333;strokeColor=#666666;" parent="1" vertex="1">
           <mxGeometry x="-124" y="360" width="250" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="ToPnCVoDEFdB8chA3Fxf-7" value="General Use Subnet 192.168.1.0/24&lt;br&gt;VLAN 101" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+        <mxCell id="ToPnCVoDEFdB8chA3Fxf-7" value="General Use Subnet 172.18.1.0/24&lt;br&gt;VLAN 101" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
           <mxGeometry x="-10" y="570.16" width="456" height="279.84" as="geometry" />
         </mxCell>
-        <mxCell id="ToPnCVoDEFdB8chA3Fxf-4" value="Homelab Subnet 192.168.2.0/23&lt;br&gt;VLAN 102" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+        <mxCell id="ToPnCVoDEFdB8chA3Fxf-4" value="Homelab Subnet 172.18.2.0/23&lt;br&gt;VLAN 102" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
           <mxGeometry x="466" y="570" width="290" height="410" as="geometry" />
         </mxCell>
         <mxCell id="ToPnCVoDEFdB8chA3Fxf-38" value="1 public IP&lt;br&gt;(Google fiber)" style="edgeStyle=orthogonalEdgeStyle;curved=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.31;entryY=0.8;entryDx=0;entryDy=0;entryPerimeter=0;fontSize=10;startArrow=classic;startFill=1;endArrow=none;endFill=0;exitX=0.954;exitY=-0.002;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="ToPnCVoDEFdB8chA3Fxf-1" target="ToPnCVoDEFdB8chA3Fxf-9" edge="1">
@@ -69,7 +69,7 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="ToPnCVoDEFdB8chA3Fxf-1" value="Opnsense (FreeBSD)&lt;br style=&quot;font-size: 10px;&quot;&gt;Protectli 4 Port Vault&lt;br style=&quot;font-size: 10px;&quot;&gt;hiroyagojo.com&lt;br&gt;192.168.0.1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=10;" parent="1" vertex="1">
+        <mxCell id="ToPnCVoDEFdB8chA3Fxf-1" value="Opnsense (FreeBSD)&lt;br style=&quot;font-size: 10px;&quot;&gt;Protectli 4 Port Vault&lt;br style=&quot;font-size: 10px;&quot;&gt;hiroyagojo.com&lt;br&gt;172.18.0.1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=10;" parent="1" vertex="1">
           <mxGeometry x="426" y="370" width="150" height="80" as="geometry" />
         </mxCell>
         <mxCell id="JLc08Lia9JhNM9PG2oi6-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;dashed=1;" parent="1" source="ToPnCVoDEFdB8chA3Fxf-2" target="JLc08Lia9JhNM9PG2oi6-17" edge="1">
@@ -80,7 +80,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="ToPnCVoDEFdB8chA3Fxf-2" value="Ruckus R710&lt;br&gt;router.hiroyagojo.com&lt;br&gt;192.168.1.2/32&lt;br style=&quot;font-size: 10px;&quot;&gt;Wireless Access Point" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;fillColor=#E5FAE4;strokeColor=#82B366;" parent="1" vertex="1">
+        <mxCell id="ToPnCVoDEFdB8chA3Fxf-2" value="Ruckus R710&lt;br&gt;router.hiroyagojo.com&lt;br&gt;172.18.1.2/32&lt;br style=&quot;font-size: 10px;&quot;&gt;Wireless Access Point" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;fillColor=#E5FAE4;strokeColor=#82B366;" parent="1" vertex="1">
           <mxGeometry x="250" y="660.16" width="150" height="60" as="geometry" />
         </mxCell>
         <mxCell id="JLc08Lia9JhNM9PG2oi6-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="ToPnCVoDEFdB8chA3Fxf-3" target="JLc08Lia9JhNM9PG2oi6-28" edge="1">
@@ -106,7 +106,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="ToPnCVoDEFdB8chA3Fxf-3" value="Juniper EX2200&lt;br style=&quot;font-size: 10px;&quot;&gt;24 port&lt;br style=&quot;font-size: 10px;&quot;&gt;192.168.0.2/32" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
+        <mxCell id="ToPnCVoDEFdB8chA3Fxf-3" value="Juniper EX2200&lt;br style=&quot;font-size: 10px;&quot;&gt;24 port&lt;br style=&quot;font-size: 10px;&quot;&gt;172.18.0.2/32" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
           <mxGeometry x="370" y="480" width="176" height="40" as="geometry" />
         </mxCell>
         <mxCell id="lGwLM4Ksfd3mSZe3ThBf-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;fontSize=9;exitX=0.521;exitY=0.951;exitDx=0;exitDy=0;exitPerimeter=0;endArrow=none;endFill=0;entryX=0.1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="ToPnCVoDEFdB8chA3Fxf-9" target="JLc08Lia9JhNM9PG2oi6-24" edge="1">
@@ -132,16 +132,16 @@
         <mxCell id="ToPnCVoDEFdB8chA3Fxf-11" value="Smart TV&lt;br&gt;&lt;font style=&quot;font-size: 8px;&quot;&gt;Must be on the same subnet as phone/laptop for screen casting.&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;horizontal=1;verticalAlign=top;fillColor=#E5FAE4;strokeColor=#82B366;" parent="1" vertex="1">
           <mxGeometry x="100" y="660.16" width="130" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="ToPnCVoDEFdB8chA3Fxf-19" value="Node1 (Ubuntu)&lt;br&gt;Dell Optiplex 7040&lt;br style=&quot;font-size: 9px;&quot;&gt;node1.hiroyagojo.com&lt;br&gt;192.168.2.4/32" style="rounded=0;whiteSpace=wrap;html=1;fontSize=9;fillColor=#EDF2FC;strokeColor=#6c8ebf;" parent="1" vertex="1">
+        <mxCell id="ToPnCVoDEFdB8chA3Fxf-19" value="Node1 (Ubuntu)&lt;br&gt;Dell Optiplex 7040&lt;br style=&quot;font-size: 9px;&quot;&gt;node1.hiroyagojo.com&lt;br&gt;172.18.2.4/32" style="rounded=0;whiteSpace=wrap;html=1;fontSize=9;fillColor=#EDF2FC;strokeColor=#6c8ebf;" parent="1" vertex="1">
           <mxGeometry x="531.5" y="670.16" width="140" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="ToPnCVoDEFdB8chA3Fxf-20" value="Node2 (Ubuntu)&lt;br&gt;Dell Optiplex 7040&lt;br&gt;node2.hiroyagojo.com&lt;br&gt;192.168.2.5/32" style="rounded=0;whiteSpace=wrap;html=1;fontSize=9;fillColor=#EDF2FC;strokeColor=#6c8ebf;" parent="1" vertex="1">
+        <mxCell id="ToPnCVoDEFdB8chA3Fxf-20" value="Node2 (Ubuntu)&lt;br&gt;Dell Optiplex 7040&lt;br&gt;node2.hiroyagojo.com&lt;br&gt;172.18.2.5/32" style="rounded=0;whiteSpace=wrap;html=1;fontSize=9;fillColor=#EDF2FC;strokeColor=#6c8ebf;" parent="1" vertex="1">
           <mxGeometry x="531.5" y="729.84" width="140" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="ToPnCVoDEFdB8chA3Fxf-21" value="Node3 (Ubuntu)&lt;br&gt;Dell Optiplex 7040&lt;br&gt;node3.hiroyagojo.com&lt;br&gt;192.168.2.6/32" style="rounded=0;whiteSpace=wrap;html=1;fontSize=9;fillColor=#EDF2FC;strokeColor=#6c8ebf;" parent="1" vertex="1">
+        <mxCell id="ToPnCVoDEFdB8chA3Fxf-21" value="Node3 (Ubuntu)&lt;br&gt;Dell Optiplex 7040&lt;br&gt;node3.hiroyagojo.com&lt;br&gt;172.18.2.6/32" style="rounded=0;whiteSpace=wrap;html=1;fontSize=9;fillColor=#EDF2FC;strokeColor=#6c8ebf;" parent="1" vertex="1">
           <mxGeometry x="531.5" y="790" width="140" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="ToPnCVoDEFdB8chA3Fxf-22" value="Raspberry Pi 1 (ubuntu)&lt;br&gt;rp.hiroyagojo.com&lt;br&gt;192.168.2.2/32" style="rounded=0;whiteSpace=wrap;html=1;fontSize=9;fillColor=#EDF2FC;strokeColor=#6c8ebf;" parent="1" vertex="1">
+        <mxCell id="ToPnCVoDEFdB8chA3Fxf-22" value="Raspberry Pi 1 (ubuntu)&lt;br&gt;rp.hiroyagojo.com&lt;br&gt;172.18.2.2/32" style="rounded=0;whiteSpace=wrap;html=1;fontSize=9;fillColor=#EDF2FC;strokeColor=#6c8ebf;" parent="1" vertex="1">
           <mxGeometry x="531.5" y="610" width="140" height="50" as="geometry" />
         </mxCell>
         <mxCell id="JLc08Lia9JhNM9PG2oi6-34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="lGwLM4Ksfd3mSZe3ThBf-9" target="qR4Jvh7rnElxipRbR2Nr-2" edge="1">
@@ -153,7 +153,7 @@
         <mxCell id="lGwLM4Ksfd3mSZe3ThBf-12" value="DHCP Server" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;fillColor=#FFF0E3;strokeColor=#d79b00;" parent="1" vertex="1">
           <mxGeometry x="371" y="430" width="75" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="lGwLM4Ksfd3mSZe3ThBf-18" value="Synology DS420 NAS&lt;br&gt;store.hiroyagojo.com&lt;br&gt;192.168.2.7/32&lt;br&gt;4 drives (3TB each, RAID5)" style="rounded=0;whiteSpace=wrap;html=1;fontSize=9;fillColor=#EDF2FC;strokeColor=#6c8ebf;" parent="1" vertex="1">
+        <mxCell id="lGwLM4Ksfd3mSZe3ThBf-18" value="Synology DS420 NAS&lt;br&gt;store.hiroyagojo.com&lt;br&gt;172.18.2.7/32&lt;br&gt;4 drives (3TB each, RAID5)" style="rounded=0;whiteSpace=wrap;html=1;fontSize=9;fillColor=#EDF2FC;strokeColor=#6c8ebf;" parent="1" vertex="1">
           <mxGeometry x="531.5" y="850" width="140" height="50" as="geometry" />
         </mxCell>
         <mxCell id="lGwLM4Ksfd3mSZe3ThBf-27" value="Laptop" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;fillColor=#E5FAE4;strokeColor=#82B366;direction=south;" parent="1" vertex="1">
@@ -169,7 +169,7 @@
           <mxGeometry x="215" y="779.8399999999999" width="80" height="40" as="geometry" />
         </mxCell>
         <mxCell id="lGwLM4Ksfd3mSZe3ThBf-44" value="&lt;font style=&quot;&quot;&gt;&lt;font style=&quot;font-size: 9px;&quot;&gt;Pihole&lt;/font&gt;&lt;br style=&quot;&quot;&gt;&lt;/font&gt;&lt;font style=&quot;font-size: 7px;&quot;&gt;DNS Adblocker&lt;br&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=6;fillColor=#EDF2FC;strokeColor=#6c8ebf;" parent="1" vertex="1">
-          <mxGeometry x="650" y="630.16" width="56" height="30" as="geometry" />
+          <mxGeometry x="650" y="630" width="56" height="30" as="geometry" />
         </mxCell>
         <mxCell id="AMfL3vu9wzqD86BI1HrZ-4" value="Node 1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=13;direction=south;horizontal=0;" parent="1" vertex="1">
           <mxGeometry x="-110" y="210" width="50" height="210" as="geometry" />
@@ -234,7 +234,7 @@
         <mxCell id="Aa6Calj-FVt8xVTaXj1K-6" value="PDU" style="rounded=0;whiteSpace=wrap;html=1;fontSize=13;" parent="1" vertex="1">
           <mxGeometry x="-113" y="120" width="230" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="qR4Jvh7rnElxipRbR2Nr-2" value="Subnet 192.168.5.0/24&lt;br&gt;VLAN 105" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeColor=#d6b656;fillColor=#fff2cc;" parent="1" vertex="1">
+        <mxCell id="qR4Jvh7rnElxipRbR2Nr-2" value="Subnet 172.18.5.0/24&lt;br&gt;VLAN 105" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeColor=#d6b656;fillColor=#fff2cc;" parent="1" vertex="1">
           <mxGeometry x="117" y="465" width="143" height="75" as="geometry" />
         </mxCell>
         <mxCell id="qR4Jvh7rnElxipRbR2Nr-5" value="K8" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#36393d;fontSize=12;fillColor=#ffcccc;" parent="1" vertex="1">
@@ -246,10 +246,10 @@
         <mxCell id="qR4Jvh7rnElxipRbR2Nr-7" value="K8" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#36393d;fontSize=12;fillColor=#ffcccc;" parent="1" vertex="1">
           <mxGeometry x="523" y="820" width="30" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="qR4Jvh7rnElxipRbR2Nr-10" value="K8 Metallb Subnet:&lt;br&gt;192.168.3.0/24" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#36393d;fontSize=12;fillColor=#ffcccc;" parent="1" vertex="1">
+        <mxCell id="qR4Jvh7rnElxipRbR2Nr-10" value="K8 Metallb Subnet:&lt;br&gt;172.18.3.0/24" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#36393d;fontSize=12;fillColor=#ffcccc;" parent="1" vertex="1">
           <mxGeometry x="610" y="980" width="146" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="K6-dPWugSKT0b-YzrzUU-1" value="Hosts Subnet: 192.168.2.0/24" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#6c8ebf;fontSize=12;fillColor=#dae8fc;" parent="1" vertex="1">
+        <mxCell id="K6-dPWugSKT0b-YzrzUU-1" value="Hosts Subnet: 172.18.2.0/24" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#6c8ebf;fontSize=12;fillColor=#dae8fc;" parent="1" vertex="1">
           <mxGeometry x="466" y="980" width="144" height="50" as="geometry" />
         </mxCell>
         <mxCell id="JLc08Lia9JhNM9PG2oi6-3" value="12U" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;" parent="1" vertex="1">
@@ -258,7 +258,7 @@
         <mxCell id="JLc08Lia9JhNM9PG2oi6-7" value="Desktop" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;fillColor=#E5FAE4;strokeColor=#82B366;direction=south;" parent="1" vertex="1">
           <mxGeometry x="10" y="660.16" width="80" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="JLc08Lia9JhNM9PG2oi6-14" value="HyperNode (Proxmox)&lt;br&gt;Lenovo&lt;br style=&quot;font-size: 9px;&quot;&gt;hypernode.hiroyagojo.com&lt;br&gt;192.168.2.8/32" style="rounded=0;whiteSpace=wrap;html=1;fontSize=9;fillColor=#EDF2FC;strokeColor=#6c8ebf;" parent="1" vertex="1">
+        <mxCell id="JLc08Lia9JhNM9PG2oi6-14" value="HyperNode (Proxmox)&lt;br&gt;Lenovo&lt;br style=&quot;font-size: 9px;&quot;&gt;hypernode.hiroyagojo.com&lt;br&gt;172.18.2.8/32" style="rounded=0;whiteSpace=wrap;html=1;fontSize=9;fillColor=#EDF2FC;strokeColor=#6c8ebf;" parent="1" vertex="1">
           <mxGeometry x="531.5" y="910" width="140" height="50" as="geometry" />
         </mxCell>
         <mxCell id="JLc08Lia9JhNM9PG2oi6-17" value="" style="shape=curlyBracket;whiteSpace=wrap;html=1;rounded=1;flipH=1;labelPosition=right;verticalLabelPosition=middle;align=left;verticalAlign=middle;rotation=-90;" parent="1" vertex="1">
@@ -276,11 +276,20 @@
         <mxCell id="JLc08Lia9JhNM9PG2oi6-35" value="LAGG" style="text;strokeColor=none;fillColor=none;html=1;fontSize=10;fontStyle=0;verticalAlign=middle;align=center;" parent="1" vertex="1">
           <mxGeometry x="470" y="860" width="40" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="JLc08Lia9JhNM9PG2oi6-36" value="CCTV Subnet 192.168.4.0/24&lt;br&gt;VLAN 104" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+        <mxCell id="JLc08Lia9JhNM9PG2oi6-36" value="CCTV Subnet 172.18.4.0/24&lt;br&gt;VLAN 104" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
           <mxGeometry x="860" y="540" width="290" height="150.16" as="geometry" />
         </mxCell>
         <mxCell id="JLc08Lia9JhNM9PG2oi6-37" value="TBD" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="945" y="600.16" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KFCr_JLn9A1wpkR_BNo8-2" value="&lt;font style=&quot;&quot;&gt;&lt;font size=&quot;1&quot;&gt;Tailscale&lt;/font&gt;&lt;br&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=6;fillColor=#EDF2FC;strokeColor=#6c8ebf;" parent="1" vertex="1">
+          <mxGeometry x="650" y="690.16" width="56" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="KFCr_JLn9A1wpkR_BNo8-3" value="&lt;font style=&quot;&quot;&gt;&lt;font size=&quot;1&quot;&gt;Tailscale&lt;/font&gt;&lt;br&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=6;fillColor=#EDF2FC;strokeColor=#6c8ebf;" parent="1" vertex="1">
+          <mxGeometry x="650" y="749.8399999999999" width="56" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="KFCr_JLn9A1wpkR_BNo8-4" value="&lt;font style=&quot;&quot;&gt;&lt;font size=&quot;1&quot;&gt;Tailscale&lt;/font&gt;&lt;br&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=6;fillColor=#EDF2FC;strokeColor=#6c8ebf;" parent="1" vertex="1">
+          <mxGeometry x="650" y="810.0999999999999" width="56" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
