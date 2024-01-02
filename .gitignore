@@ -3,3 +3,5 @@ test.yaml
 *.dtmp
 .DS_Store
 vault_secret.yaml
+secret.yaml
+cluster-keys.json

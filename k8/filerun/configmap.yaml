@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: filerun-configmap
+data:
+  database-host: 127.0.0.1
+  database-port: "3306"
+  database-name: "filerun"
+  database-user: "filerun"
