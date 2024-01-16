@@ -20,5 +20,6 @@ ansible-galaxy collection install -r collections.yaml
 
 Run a playbook:
 ```
-ansible-playbook -i hosts.ini playbooks/software.yaml --tags pihole
+cd ansible
+ansible-playbook -i hosts.ini playbooks/software.yaml --tags pihole --vault-password-file password_file
 ```
