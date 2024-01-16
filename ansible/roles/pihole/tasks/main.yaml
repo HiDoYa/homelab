@@ -28,6 +28,17 @@
       - "/opt/pihole/etc-pihole/:/etc/pihole/"
       - "/opt/pihole/etc-dnsmasq.d/:/etc/dnsmasq.d/"
 
+- name: Run watchguard
+  docker_container:
+    name: watchguard
+    image: containrrr/watchtower
+    detach: true
+    pull: true
+    restart: true
+    restart_policy: always
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+
 - name: Create DNS file
   template:
     src: files/custom.list.j2
