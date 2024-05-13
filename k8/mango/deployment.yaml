@@ -12,29 +12,29 @@ spec:
         app: mango-deployment
     spec:
       containers:
-      - name: mango
-        image: hkalexling/mango:latest
-        ports:
-        - name: http
-          containerPort: 9000
-          protocol: TCP
-        volumeMounts:
-        - mountPath: /root/mango
-          name: mango-data-volume
-        - mountPath: /root/mango/library
-          name: mango-manga-volume
-        - mountPath: /root/.config/mango
-          name: mango-config-volume
+        - name: mango
+          image: hkalexling/mango:latest
+          ports:
+            - name: http
+              containerPort: 9000
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /root/mango
+              name: mango-data-volume
+            - mountPath: /root/mango/library
+              name: mango-manga-volume
+            - mountPath: /root/.config/mango
+              name: mango-config-volume
       volumes:
-      - name: mango-manga-volume
-        nfs:
-          server: store.hiroyagojo.com
-          path: /volume1/Electro/Pictures/Manga
-      - name: mango-data-volume
-        nfs:
-          server: store.hiroyagojo.com
-          path: /volume1/Containers/apps/mango/data
-      - name: mango-config-volume
-        nfs:
-          server: store.hiroyagojo.com
-          path: /volume1/Containers/apps/mango/config
+        - name: mango-data-volume
+          nfs:
+            server: 192.168.2.7
+            path: /volume1/Containers/apps/mango/data
+        - name: mango-manga-volume
+          nfs:
+            server: 192.168.2.7
+            path: /volume1/Electro/Pictures/Manga
+        - name: mango-config-volume
+          nfs:
+            server: 192.168.2.7
+            path: /volume1/Containers/apps/mango/config

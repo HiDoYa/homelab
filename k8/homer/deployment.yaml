@@ -12,20 +12,20 @@ spec:
         app: homer-deployment
     spec:
       containers:
-      - name: homer
-        image: b4bz/homer:latest
-        ports:
-        - name: http
-          containerPort: 8080
-          protocol: TCP
-        env:
-        - name: INIT_ASSETS
-          value: "0"
-        volumeMounts:
-        - mountPath: /www/assets
-          name: homer-volume
+        - name: homer
+          image: b4bz/homer:latest
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          env:
+            - name: INIT_ASSETS
+              value: "0"
+          volumeMounts:
+            - mountPath: /www/assets
+              name: homer-volume
       volumes:
-      - name: homer-volume
-        nfs:
-          server: store.hiroyagojo.com
-          path: /volume1/Containers/apps/homer/assets
+        - name: homer-volume
+          nfs:
+            server: 192.168.2.7
+            path: /volume1/Containers/apps/homer/assets
