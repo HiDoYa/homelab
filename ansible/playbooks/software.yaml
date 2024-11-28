@@ -1,6 +1,6 @@
 ---
 - name: Install software for servers
-  hosts: servers,rasps
+  hosts: servers
 
   tasks:
   - name: Install docker
@@ -10,73 +10,9 @@
         tags: ['docker']
     tags: ['docker']
 
-- name: Install software for raspberry pi server
-  hosts: rasps
-
-  tasks:
-  - name: Install pihole
-    include_role:
-      name: pihole
-      apply:
-        tags: ['pihole']
-    tags: ['pihole']
-
-- name: Install software for dell servers
-  hosts: servers
-
-  tasks:
-  - name: Install consul
-    include_role:
-      name: consul
-      apply:
-        tags: ['consul']
-    tags: ['consul']
-
-  - name: Install chef
-    include_role:
-      name: chef
-      apply:
-        tags: ['chef']
-    tags: ['chef']
-
-  - name: Install traefik
-    include_role:
-      name: traefik
-      apply:
-        tags: ['traefik']
-    tags: ['traefik']
-
-  - name: Install mango
-    include_role:
-      name: mango
-      apply:
-        tags: ['mango']
-    tags: ['mango']
-
-  - name: Install filerun
-    include_role:
-      name: filerun
-      apply:
-        tags: ['filerun']
-    tags: ['filerun']
-
-  - name: Install vault
-    include_role:
-      name: vault
-      apply:
-        tags: ['vault']
-    tags: ['vault']
-
   - name: Install kubernetes
     include_role:
       name: kubernetes
       apply:
         tags: ['kubernetes']
     tags: ['kubernetes']
-
-  - name: Install homer
-    include_role:
-      name: homer
-      apply:
-        tags: ['homer']
-    tags: ['homer']

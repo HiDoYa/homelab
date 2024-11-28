@@ -1,6 +1,6 @@
 ---
 - name: Maintenance
-  hosts: servers,rasps
+  hosts: servers
   become: true
 
   tasks:
@@ -38,8 +38,7 @@
   - name: Check if a reboot is needed
     stat: 
       path: /var/run/reboot-required
-      get_md5: false
     register: reboot_required_file
 
-  - include_tasks: reboot.yaml
+  - include_tasks: tasks/reboot.yaml
     when: reboot_required_file.stat.exists

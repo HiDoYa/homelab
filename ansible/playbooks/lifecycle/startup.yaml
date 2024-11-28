@@ -1,40 +1,40 @@
---- 
+---
 - name: Startup servers
-  hosts: rasps
+  hosts: localhost
 
   tasks:
-  - name: See if wakeonlan binary exists
-    shell:
-      cmd: /usr/local/bin/wakeonlan
-    register: result
-    failed_when: false
-    become: true
+    - name: See if wakeonlan binary exists
+      shell:
+        cmd: /usr/local/bin/wakeonlan
+      register: result
+      failed_when: false
+      become: true
 
-  - name: Get wakeonlan binary
-    uri:
-      url: https://raw.githubusercontent.com/jpoliv/wakeonlan/master/wakeonlan
-      dest: /usr/local/bin/wakeonlan
-      mode: "755"
-    when: result.rc != 0
-    become: true
+    - name: Get wakeonlan binary
+      uri:
+        url: https://raw.githubusercontent.com/jpoliv/wakeonlan/master/wakeonlan
+        dest: /usr/local/bin/wakeonlan
+        mode: "755"
+      when: result.rc != 0
+      become: true
 
-  - name: Select all servers (extravar node)
-    set_fact:
-      servers: "{{ servers | default([]) + [item] }}"
-    when: node is not defined
-    loop: "{{ groups['servers'] }}"
+    - name: Select all servers (extravar node)
+      set_fact:
+        servers: "{{ servers | default([]) + [item] }}"
+      when: node is not defined
+      loop: "{{ groups['servers'] }}"
 
-  - name: Select specific server (extravar node)
-    set_fact:
-      servers: "{{ [node] }}"
-    when: node is defined
+    - name: Select specific server (extravar node)
+      set_fact:
+        servers: "{{ [node] }}"
+      when: node is defined
 
-  - name: Get MAC Addresses
-    set_fact:
-      mac_addresses: "{{ mac_addresses | default([]) + [hostvars[item].mac] }}"
-    loop: "{{ servers }}"
+    - name: Get MAC Addresses
+      set_fact:
+        mac_addresses: "{{ mac_addresses | default([]) + [hostvars[item].mac] }}"
+      loop: "{{ servers }}"
 
-  - name: Send wakeonlan broadcasts to the subnet
-    shell:
-      cmd: "wakeonlan {{ item }}"
-    loop: "{{ mac_addresses }}"
+    - name: Send wakeonlan broadcasts to the subnet
+      shell:
+        cmd: "wakeonlan {{ item }}"
+      loop: "{{ mac_addresses }}"
