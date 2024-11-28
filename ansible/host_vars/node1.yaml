@@ -1,8 +1,3 @@
 ip: "192.168.2.4"
 mac: "48:4d:7e:d3:0e:05"
 dns_address: "node1.hiroyagojo.com"
-
-chef_server: true
-consul_leader: true
-kube_master: true
-vault_server: true
