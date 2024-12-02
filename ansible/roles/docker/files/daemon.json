@@ -1,5 +1,11 @@
 {
   "exec-opts": [
     "native.cgroupdriver=systemd"
+  ],
+  "default-address-pools": [
+    {
+      "base" : "172.16.0.0/16",
+      "size" : 26
+    }
   ]
 }
