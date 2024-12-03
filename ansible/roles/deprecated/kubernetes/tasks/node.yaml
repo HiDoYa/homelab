@@ -1,0 +1,5 @@
+---
+- name: Initialize kube node
+  shell:
+    cmd: "{{ kube_join_cmd }}"
+  become: true

@@ -6,3 +6,4 @@ vault_secret.yaml
 secret.yaml
 cluster-keys.json
 password_file
+dcompose-files/

@@ -5,7 +5,7 @@
     dest: /tmp/authorized_keys
   become: true
 
-- name: Check if daemon.json is different on server
+- name: Check if authorized_keys is different on server
   shell:
     cmd: "diff /tmp/authorized_keys /home/ubuntu/.ssh/authorized_keys"
   register: file_diff

@@ -1,0 +1,6 @@
+node_name  "{{ inventory_hostname }}"
+chef_server_url  "https://{{ chef_server_ip }}/organizations/{{ chef_org }}"
+chef_license  "accept"
+ssl_verify_mode :verify_none
+log_location "/opt/chef/chef_client_runs.log"
+log_level :info

@@ -9,10 +9,3 @@
       apply:
         tags: ['docker']
     tags: ['docker']
-
-  - name: Install kubernetes
-    include_role:
-      name: kubernetes
-      apply:
-        tags: ['kubernetes']
-    tags: ['kubernetes']

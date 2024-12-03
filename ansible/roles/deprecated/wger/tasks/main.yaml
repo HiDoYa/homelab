@@ -1,0 +1,88 @@
+---
+# Note: This playbook is not currently being used, for test purposes only
+
+- name: Ensure directory exists
+  file:
+    path: "{{ wger_path }}"
+    state: directory
+  when: wger is defined and wger
+  become: true
+
+- name: Ensure directory exists
+  file:
+    path: "{{ wger_path }}/{{ item }}"
+    state: directory
+    owner: ubuntu
+    group: ubuntu
+  become: true
+  loop:
+    - media
+    - static
+    - postgres
+  when: wger is defined and wger
+
+- name: Get secrets
+  set_fact:
+    wger_db_database: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=ansible_secrets/data/wger' + vault_auth_string)['db_database'] }}"
+    wger_db_username: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=ansible_secrets/data/wger' + vault_auth_string)['db_username'] }}"
+    wger_db_password: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=ansible_secrets/data/wger' + vault_auth_string)['db_password'] }}"
+    wger_secret_key: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=ansible_secrets/data/wger' + vault_auth_string)['secret_key'] }}"
+  when: wger is defined and wger
+
+- name: Create env variables
+  template:
+    src: files/prod.env.j2
+    dest: "{{ wger_path }}/prod.env"
+  when: wger is defined and wger
+  become: true
+
+- name: Create docker-compose file
+  template:
+    src: files/docker-compose.yaml.j2
+    dest: "{{ wger_path }}/docker-compose.yaml"
+  when: wger is defined and wger
+  become: true
+
+- name: Create nginx.conf file
+  template:
+    src: files/nginx.conf
+    dest: "{{ wger_path }}/nginx.conf"
+  when: wger is defined and wger
+  become: true
+
+- name: Run wger
+  # Bug: django wger service tries to run before postgres is completely initialized
+  # So I get around this with a wait
+  block:
+    - name: Run wger
+      docker_compose:
+        project_src: "{{ wger_path }}"
+        services:
+          - db
+          - cache
+      when: wger is defined and wger
+
+    - name: Pause for 5 seconds to let postgres load
+      pause:
+        seconds: 5
+      when: wger is defined and wger
+
+    - name: Run wger
+      docker_compose:
+        project_src: "{{ wger_path }}"
+      when: wger is defined and wger
+
+    - name: Pause for 20 seconds to let wger load
+      pause:
+        seconds: 20
+      when: wger is defined and wger
+
+- name: Download exercises images and ingredients
+  shell:
+    cmd: "{{ item }}"
+    chdir: "{{ wger_path }}"
+  loop:
+    - docker-compose exec web python3 manage.py sync-exercises
+    - docker-compose exec web python3 manage.py download-exercise-images
+    - docker-compose exec web wger load-online-fixtures
+  when: wger is defined and wger

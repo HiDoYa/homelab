@@ -1,0 +1,48 @@
+---
+- name: Add chef GPG apt Key
+  apt_key:
+    url: "{{ chef_gpg_key }}"
+    state: present
+  become: true
+  when: chef_workstation is defined and chef_workstation
+
+- name: Add chef Repository
+  apt:
+    deb: "{{ chef_workstation_download_url }}"
+    state: present
+    update_cache: true
+  become: true
+  when: chef_workstation is defined and chef_workstation
+
+- name: Set chef workstation dir
+  set_fact:
+    chef_workstation_path: "{{ chef_workstation_remote_path }}"
+  when: chef_workstation is defined and chef_workstation
+
+- name: Create directory structure
+  file:
+    path: "{{ chef_workstation_path }}"
+    state: directory
+  become: false
+  when: chef_workstation is defined and chef_workstation
+
+- name: Create config.rb
+  template:
+    src: files/config.rb.j2
+    dest: "{{ chef_workstation_path }}/config.rb"
+  when: chef_workstation is defined and chef_workstation
+
+- name: Copy admin pem from server
+  fetch:
+    flat: true
+    src: "{{ chef_admin_pem_path }}"
+    dest: "/tmp/chef-user-admin.pem"
+    mode: "0600"
+  when: chef_server is defined and chef_server
+
+- name: Copy admin pem from server
+  copy:
+    src: /tmp/chef-user-admin.pem
+    dest: "{{ chef_workstation_path }}/chef-user-admin.pem"
+    mode: "0600"
+  when: chef_workstation is defined and chef_workstation

@@ -6,7 +6,7 @@ server:
     - host: vault.k8.hiroyagojo.com
   ha:
     enabled: true
-    raft: 
+    raft:
       enabled: true
 ui:
   enabled: true

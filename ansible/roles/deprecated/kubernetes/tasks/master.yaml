@@ -1,0 +1,20 @@
+---
+- name: Initialize kube master
+  shell:
+    cmd: |
+      kubeadm init \
+        --apiserver-advertise-address={{ ip }} \
+        --pod-network-cidr={{ kube_subnet }}
+  register: kube_init_output
+  become: true
+
+- name: Get kube join command
+  set_fact:
+    kube_join_cmd: "{{ kube_init_output.stdout_lines[-2:] | map('trim') | join('') | regex_replace('[\\t|\\\\]+','') }}"
+
+- name: Get kube config (for local dev)
+  fetch:
+    src: /etc/kubernetes/admin.conf
+    dest: "{{ kube_local_path }}"
+    flat: true
+  become: true

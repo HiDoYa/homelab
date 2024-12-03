@@ -1,0 +1,5 @@
+{% for host in hostvars %}
+{% if hostvars[host].ip is defined and hostvars[host].dns_address is defined %}
+{{ hostvars[host].ip }} {{ hostvars[host].dns_address }}
+{% endif %}
+{% endfor %}

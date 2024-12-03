@@ -35,14 +35,3 @@
       hostname:
         name: "{{ inventory_hostname }}"
       become: true
-
-- name: Initialize systems
-  hosts: servers
-  tasks:
-    - name: Set DNS server manually to avoid DHCP handing out this DNS server to all devices
-      lineinfile:
-        path: /etc/resolv.conf
-        line: nameserver 192.168.2.2
-        insertbefore: "BOF"
-        state: present
-      become: true

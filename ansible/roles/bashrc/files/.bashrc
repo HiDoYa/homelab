@@ -117,4 +117,3 @@ fi
 
 # Go version
 export PATH=$PATH:${HOME}/go/bin
-

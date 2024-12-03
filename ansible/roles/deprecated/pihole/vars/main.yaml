@@ -1,0 +1,9 @@
+pihole_blocklist:
+  - "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"
+  - "https://dbl.oisd.nl/"
+  - "https://v.firebog.net/hosts/AdguardDNS.txt"
+
+pihole_whitelist:
+  - "thetradedesk.com"
+  - "adsrvr.org"
+  - "hiroyagojo.com"

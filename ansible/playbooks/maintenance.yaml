@@ -36,7 +36,7 @@
     when: firmware_upgrade_needed
 
   - name: Check if a reboot is needed
-    stat: 
+    stat:
       path: /var/run/reboot-required
     register: reboot_required_file
 
